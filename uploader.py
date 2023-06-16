@@ -5,6 +5,8 @@ import json
 
 api_url = "https://test.researchdata.tuwien.ac.at/"
 
+publish = False
+
 headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
@@ -28,7 +30,6 @@ def main():
 
 
     upload("", [])
-
 
     # convert DataCite XML to DataCite JSON
 
@@ -65,16 +66,27 @@ def upload(metadata, files):
             req = requests.put(
                 file_links["content"], data=f, headers=headers_stream, verify=False
             )
+            if (req.status_code != 200):
+                print(f"Could not upload file content: {req.status_code} {req.text}")
+                sys.exit(1)
         
-        
+        # Commit file upload
+        requests.post(
+            file_links["commit"], headers=headers, verify=False
+        )
+        if (req.status_code != 200):
+            print(f"Could not commit file upload: {req.status_code} {req.text}")
+            sys.exit(1)
 
+    if publish:
+        # Publish record
+        req = requests.post(
+            links["publish"], headers=headers, verify=False
+        )
 
-
-
-    print(links)
-
-    
-
+        if (req.status_code != 202):
+            print(f"Could not publish record: {req.status_code} {req.text}")
+            sys.exit(1)
 
 if __name__ == "__main__":
     main()
