@@ -1,0 +1,68 @@
+{
+    "$root": 
+        {
+            "identifier_mapping": {
+                "from": "identifier",
+                "to": "identifier",
+                "restrict": "?IsDOI",
+                "processing": "$DOIProcessing",
+                "ifPresent": {
+                    "identifierType": {
+                        "value": "DOI"
+                    }
+                },
+                "ifNotPresent": {
+                    "@this": {
+                        "value": ":tba"
+                    }
+                }
+            },
+
+            "name_mapping": {
+                "from": "@name",
+                "to": "title",
+                "ifPresent": {
+                    "titleType": {
+                        "value": "$NotPresent"
+                    }
+                }
+            },
+
+            "alternative_name_mapping": {
+                "from": "@alternativeName",
+                "to": "title",
+                "ifPresent": {
+                    "titleType": {
+                        "value": "AlternativeTitle"
+                    }
+                }
+            },
+            
+            "publication_year_mapping": {
+                "from": "datePublished",
+                "to": "publicationYear",
+                "processing": "$ISO8601Processing",
+                "ifNotPresent": {
+                    "@this": {
+                        "value": ":unav"
+                    }
+                }
+            },
+
+            "resource_type_mapping": {
+                "from": "description",
+                "to": "resourceType",
+                "ifPresent": {
+                    "resourceTypeGeneral": {
+                        "value": "Dataset"
+                    }
+                }
+
+            },
+
+            "publisher_mapping": {
+                "from": "publisher"
+            }
+
+        }
+}
