@@ -1,6 +1,16 @@
 import sys
 import json
 
+"""
+Usage: python -m converter example.json
+
+This Python code gets a .json as input, what we would like to convert
+Also, uses a mapping.json, which defines how to rewrite RO Crate format to DataCite
+The output is the converted .json file
+
+"""
+
+
 def main():
     
     if (len(sys.argv) != 2):
@@ -25,6 +35,8 @@ def main():
     # returns JSON object as a dictionary
     data = json.load(f)
     """
+    ----> HOW TO USE JSON
+    
     # print one element of the data
     print(data['@graph'][0]["@type"])
 
