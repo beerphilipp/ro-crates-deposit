@@ -1,5 +1,6 @@
 import sys
 import json
+from json import dumps, loads
 
 """
 Usage: python -m converter example.json
@@ -24,7 +25,7 @@ def main():
     mapping = open("mapping.json")
     m = json.load(mapping)
 
-    print(m)
+
 
     # -----------------------
 
@@ -34,6 +35,15 @@ def main():
 
     # returns JSON object as a dictionary
     data = json.load(f)
+
+    # how to print it like a true json file
+    print(dumps(data, indent=2))
+
+    #for key, value in data.iteritems():
+    #    print(key, value)
+
+
+
     """
     ----> HOW TO USE JSON
     
