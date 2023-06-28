@@ -35,7 +35,7 @@ def main():
 
     # returns JSON object as a dictionary
     data = json.load(f)
-
+    """
     # how to print it like a true json file
     print(dumps(data, indent=2))
 
@@ -44,17 +44,15 @@ def main():
 
 
 
-    """
-    ----> HOW TO USE JSON
-    
+
     # print one element of the data
     print(data['@graph'][0]["@type"])
 
     print(len(data['@graph']))
 
-#    for i in range(len(data['@graph'])):
+    for i in range(len(data['@graph'])):
 
-#        print(i, " -------- ", data['@graph'][i])
+        print(i, " -------- ", data['@graph'][i])
 
     print("Hierarch of json with datatypes: ")
 
@@ -68,13 +66,16 @@ def main():
     print(type(data['@graph'][1]), 'sub-dictionary:', data['@graph'][1])
     print("")
     print(type(data['@graph'][1]["@type"]), "element:", data['@graph'][1]["@type"])
-
+    """
 
     # Closing file
     f.close()
 
-    # Merge input json file with mapping
-    # and create output file
+    
+
+    # THIS IS HOW YOU CHANGE A KEY
+
+    data["updatedstuff"] = data.pop("@context")
 
     # data should be the converted file
     json_object = json.dumps(data, indent=2)
@@ -83,7 +84,5 @@ def main():
         out.write(json_object)
 
 
-
-    """
 if __name__ == "__main__":
     main()
