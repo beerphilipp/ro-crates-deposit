@@ -1,0 +1,152 @@
+{
+    "$root": 
+        {
+            "identifier_mapping": {
+                "mappings": {
+                    "id_mapping": {
+                        "from": "@id",
+                        "to": "identifier",
+                        "onlyIf": "?IsDOI",
+                        "processing": "$DOIProcessing",
+                        "ifPresent": {
+                            "identifierType": {
+                                "value": "DOI"
+                            }
+                        }
+                    }
+                },
+                "ifNonePresent": {
+                    "@this": {
+                        "value": ":tba"
+                    }
+                }
+            },
+
+            "name_mapping": {
+                "mappings": {
+                    "name_mapping_1": {
+                        "from": "name",
+                        "to": "title"
+                    },
+                    "alternative_name_mapping": {
+                        "from": "@alternativeName",
+                        "to": "title",
+                        "ifPresent": {
+                            "titleType": {
+                                "value": "AlternativeTitle"
+                            }
+                        }
+                    }
+                },
+                "ifNonePresent": {
+                    "@this": {
+                        "value": ":unkn"
+                    }
+                }
+            },
+
+            
+            
+            "publication_year_mapping": {
+                "mappings": {
+                    "publication_year_mapping_1": {
+                        "from": "datePublished",
+                        "to": "publicationYear",
+                        "processing": "$ISO8601Processing"
+                    }
+                },
+                "ifNonePresent": {
+                    "@this": {
+                        "value": ":unav"
+                    }
+                }
+        
+            },
+
+            "resource_type_mapping": {
+                "mappings": {
+                    "resource_type_mapping_1": {
+                        "from": "description",
+                        "to": "resourceType"
+                    }
+                },
+                "ifPresent": {
+                    "resourceTypeGeneral": {
+                        "value": "Dataset"
+                    }
+                }
+            },
+
+
+            "creator_mapping": {
+                "mappings": {
+                    "creator_person_given_name_mapping": {
+                        "from": "$author->givenName",
+                        "to": "givenName",
+                        "restrict": "?@type='Person'",
+                        "ifPresent": {
+                            "nameType": {
+                                "value": "Personal"
+                            }
+                        }
+                    },
+                    "creator_person_family_name_mapping": {
+                        "from": "$author->familyName",
+                        "to": "familyName",
+                        "restrict": "?$author->type='Person'",
+                        "ifPresent": {
+                            "nameType": {
+                                "value": "Personal"
+                            }
+                        }
+                    },
+                    "creator_person_name_mapping": {
+                        "from": "$author->name",
+                        "to": "creatorName",
+                        "restrict": "?$author->type='Person'",
+                        "ifPresent": {
+                            "nameType": {
+                                "value": "Personal"
+                            }
+                        }
+                    },
+                    "creator_person_identifier_mapping": {
+                        "from": "@id",
+                        "to": ""
+                    }
+
+                },
+                "ifNonePresent": {
+
+                }
+            }
+
+
+            
+
+            
+            ,
+
+            "creator_organization_mapping": {
+                "creator_organization_name_mapping": {
+                    "from": "$author->name",
+                    "to": "creatorName",
+                    "restrict": "?$author->type='Organization'",
+                    "ifPresent": {
+                        "nameType": {
+                            "value": "Organizational"
+                        }
+                    }
+                }
+            }
+            
+
+            
+
+
+
+
+
+
+        }
+}

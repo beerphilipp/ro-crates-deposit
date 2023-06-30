@@ -1,152 +1,155 @@
 {
     "$root": 
         {
-            "identifier_mapping": {
+            "resource_type_mapping": {
                 "mappings": {
-                    "id_mapping": {
-                        "from": "@id",
-                        "to": "identifier",
-                        "onlyIf": "?IsDOI",
-                        "processing": "$DOIProcessing",
-                        "ifPresent": {
-                            "identifierType": {
-                                "value": "DOI"
-                            }
-                        }
-                    }
-                },
-                "ifNonePresent": {
-                    "@this": {
-                        "value": ":tba"
+                    "resource_type_mapping_1": {
+                        "_note": "This is not working",
+                        "to": "metadata.resource_type.id",
+                        "value": "dataset"
                     }
                 }
             },
 
-            "name_mapping": {
+            "creators_mapping": {
+                "_ignore": true
+            },
+
+            "tile_mapping": {
                 "mappings": {
-                    "name_mapping_1": {
+                    "name_mapping": {
                         "from": "name",
-                        "to": "title"
+                        "to": "metadata.title"
                     },
-                    "alternative_name_mapping": {
+                    "additional_title_mapping": {
                         "from": "@alternativeName",
-                        "to": "title",
-                        "ifPresent": {
-                            "titleType": {
-                                "value": "AlternativeTitle"
+                        "to": "metadata.additional_titles[]",
+                        "value": {
+                            "title": "@@this",
+                            "type": {
+                                "id": "alternative-title",
+                                "title": {
+                                    "en": "Alternative Title"
+                                }
                             }
                         }
                     }
                 },
                 "ifNonePresent": {
-                    "@this": {
+                    "metadata.title": {
                         "value": ":unkn"
                     }
                 }
             },
-
             
-            
-            "publication_year_mapping": {
+            "publication_date_mapping": {
                 "mappings": {
-                    "publication_year_mapping_1": {
+                    "publication_date_mapping_1": {
                         "from": "datePublished",
-                        "to": "publicationYear",
-                        "processing": "$ISO8601Processing"
+                        "to": "metadata.publication_date",
+                        "processing": "$dateProcessing"
                     }
                 },
                 "ifNonePresent": {
-                    "@this": {
+                    "metadata.publication_date": {
                         "value": ":unav"
                     }
                 }
         
             },
 
-            "resource_type_mapping": {
+            "description_mapping": {
                 "mappings": {
-                    "resource_type_mapping_1": {
+                    "description_mapping_1": {
                         "from": "description",
-                        "to": "resourceType"
-                    }
-                },
-                "ifPresent": {
-                    "resourceTypeGeneral": {
-                        "value": "Dataset"
+                        "to": "metadata.description"
+                    },
+                    "additional_descriptions": {
+                        "_ignore": true,
+                        "_note": "No additional descriptions used"
                     }
                 }
             },
 
-
-            "creator_mapping": {
+            "rights_mappings": {
                 "mappings": {
-                    "creator_person_given_name_mapping": {
-                        "from": "$author->givenName",
-                        "to": "givenName",
-                        "restrict": "?@type='Person'",
-                        "ifPresent": {
-                            "nameType": {
-                                "value": "Personal"
-                            }
+                    "rights_id_mapping": {
+                        "from": "$license.@id",
+                        "to": "metadata.rights[].id"
+                    },
+                    "rights_title_mapping": {
+                        "from": "$license.name",
+                        "to": "metadata.rights[].title",
+                        "value": {
+                            "en": "@@this"
                         }
                     },
-                    "creator_person_family_name_mapping": {
-                        "from": "$author->familyName",
-                        "to": "familyName",
-                        "restrict": "?$author->type='Person'",
-                        "ifPresent": {
-                            "nameType": {
-                                "value": "Personal"
-                            }
+                    "rights_description_mapping": {
+                        "from": "$license.description",
+                        "to": "metadata.rights[].description",
+                        "value": {
+                            "en": "@@this"
                         }
                     },
-                    "creator_person_name_mapping": {
-                        "from": "$author->name",
-                        "to": "creatorName",
-                        "restrict": "?$author->type='Person'",
-                        "ifPresent": {
-                            "nameType": {
-                                "value": "Personal"
-                            }
-                        }
-                    },
-                    "creator_person_identifier_mapping": {
-                        "from": "@id",
-                        "to": ""
-                    }
-
-                },
-                "ifNonePresent": {
-
-                }
-            }
-
-
-            
-
-            
-            ,
-
-            "creator_organization_mapping": {
-                "creator_organization_name_mapping": {
-                    "from": "$author->name",
-                    "to": "creatorName",
-                    "restrict": "?$author->type='Organization'",
-                    "ifPresent": {
-                        "nameType": {
-                            "value": "Organizational"
-                        }
+                    "rights_link_mapping": {
+                        "from": "$license.identifier",
+                        "to": "metadata.rights[].link"
                     }
                 }
             },
-            
 
-            
+            "contributors_mapping": {
+                "_ignore": true
+            },
 
+            "subjects_mapping": {
+                "_ignore": true,
+                "_note": "No subjects used"
+            },
 
+            "languages_mapping": {
+                "_ignore": true
+            },
 
+            "dates_mapping": {
+                "_ignore": true
+            },
 
+            "version_mapping": {
+                "_ignore": true
+            },
 
+            "publisher_mapping": {
+                "_ignore": true
+            },
 
+            "alternative_identifier_mapping": {
+                "_ignore": true
+            },
+
+            "related_identifiers_mapping": {
+                "_ignore": true
+            },
+
+            "sizes_mapping": {
+                "_ignore": true
+            },
+
+            "formats_mapping": {
+                "_ignore": true
+            },
+
+            "locations_mapping": {
+                "_ignore": true
+            },
+
+            "funding_references_mapping": {
+                "_ignore": true
+            },
+
+            "references_mapping": {
+                "_ignore": true
+            }
         }
+
 }
