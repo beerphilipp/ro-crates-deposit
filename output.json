@@ -20,24 +20,26 @@
         }
     },
     "metadata": {
+        "creators": [
+            {
+                "person_or_org": {
+                    "name": "J. Xuan"
+                },
+                "type": "personal"
+            }
+        ],
         "title": "My Dataset",
         "publication_date": "2020",
         "description": "A dataset containing some data",
         "rights": [
             {
-                "id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"
-            },
-            {
+                "id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
                 "title": {
                     "en": "Attribution-NonCommercial-ShareAlike 3.0 Australia (CC BY-NC-SA 3.0 AU)"
-                }
-            },
-            {
+                },
                 "description": {
                     "en": "This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Australia License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/au/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA."
-                }
-            },
-            {
+                },
                 "link": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"
             }
         ]

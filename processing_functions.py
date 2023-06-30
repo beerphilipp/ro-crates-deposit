@@ -4,5 +4,13 @@ def dateProcessing(value):
     # TODO: Implement data processing
     return value
 
+def authorProcessing(value):
+    if value == "Person":
+        return "personal"
+    elif value == "Organization":
+        return "organizational"
+    else:
+        return ""
+
 def ISO8601Processing(value):
     return "ABC"

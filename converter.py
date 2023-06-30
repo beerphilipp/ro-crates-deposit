@@ -59,7 +59,7 @@ def main():
         mappings = root_mappings.get("mappings")
 
         for mapping_key in mappings:
-            # TODO: implement array mapping behaviour
+            # TODO: implement proper array mapping behaviour
             print(f"\t|- Applying mapping {mapping_key}")
                 
             mapping = mappings.get(mapping_key)
@@ -207,6 +207,29 @@ def format_value(format, value):
         raise TypeError(f"Format must be a string or a dictionary, but is {type(format)}.")
 
 def set_dc(dictionary, key, value=None, add_to=-1):
+    keys = key.split(".")
+    current_dict = dictionary
+    for key_part in keys:
+        
+        if key_part.endswith("[]") and not key_part[:-2] in current_dict:
+            current_dict[key_part[:-2]] = [{}]
+            current_dict = current_dict[key_part[:-2]][0]
+        
+        elif key_part.endswith("[]") and key_part[:-2] in current_dict:
+            current_dict = current_dict[key_part[:-2]][0]
+        
+        elif not key_part in current_dict and not key_part.endswith("[]"):
+            current_dict[key_part] = {}
+
+        else:
+            current_dict = current_dict[key_part]
+            
+        
+    
+    last_key = keys[-1]
+    current_dict[last_key] = value
+    return dictionary
+
     add_to = -1
     keys = key.split(".")
     current_dict = dictionary
