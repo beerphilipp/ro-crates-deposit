@@ -25,7 +25,13 @@
                 "person_or_org": {
                     "name": "J. Xuan"
                 },
-                "type": "personal"
+                "type": "personal",
+                "affiliations": [
+                    {
+                        "id": "https:/abc",
+                        "name": "ABC University"
+                    }
+                ]
             }
         ],
         "title": "My Dataset",

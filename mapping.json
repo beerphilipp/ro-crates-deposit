@@ -43,16 +43,16 @@
                         "_ignore": true
                     },
 
+                    "affiliation_mapping_direct": {
+                        "from": "$author.affiliation",
+                        "to": "metadata.creators[].affiliations[].name"
+                    },
                     "affiliation_mapping_id": {
-                        "from": "",
-                        "to": "metadata.creators[].affiliations[].id",
-                        "_ignore": true,
-                        "_note": "Add the affiliation"
+                        "from": "$author.$affiliation.@id",
+                        "to": "metadata.creators[].affiliations[].id"
                     },
                     "affiliation_mapping_name": {
-                        "_ignore": true,
-                        "_note": "Add the affiliation",
-                        "from": "",
+                        "from": "$author.$affiliation.name",
                         "to": "metadata.creators[].affiliations[].name"
                     }
                 }

@@ -114,32 +114,51 @@ def rc_get_rde(rc):
         if (entity.get("@id") == root):
             return entity
 
+
 def get_rc(rc, from_key, format):
     """
-    
+        Retrieves the value of the given key from the given RO-Crate.
+        A key consists of multiple subkeys, separated by a dot (.).
+        If a subkey starts with a $, then it is a reference to another key.
+
+        The function also supports formatting of the value, using the format parameter.
+        The format parameter is a string, which can contain the following special values:
+            - @@this: The value of the key itself
+
+        :param rc: The RO-Crate to retrieve the value from.
+        :param from_key: The key to retrieve the value from.
+        :param format: The format to apply to the value.
+        :return: The value of the given key in the given RO-Crate.
     """
     result = None
-    print(f"\t\t|- Retrieving value {from_key} from RO-Crate.")
-    
-    if from_key:
-        keys = from_key.split(".")
-        if (from_key and from_key.startswith("$")):
-            temp = get_rc_ref_root(rc, from_key)
-            keys = keys[1:]
-            #raise NotImplementedError(f"$-prefixed keys not yet implemented.")
-        else:
-            temp = rc_get_rde(rc)
 
-        if (temp == None):
-            return None
+    if from_key:
+        print(f"\t\t|- Retrieving value {from_key} from RO-Crate.")
+        keys = from_key.split(".")
+        temp = rc_get_rde(rc)
+        print(temp)
+
         for key in keys:
-            if (key not in temp.keys()):
-                # key not found in ro-crate
+            if (key.startswith("$")):
+                # we need to dereference the key
+                temp = get_rc_ref(rc, temp, key)
+                if (temp == None):
+                    return None
+            
+            elif (key not in temp.keys()):
+                # The key could not be found in the RO-Crate
                 return None
-            temp = temp.get(key)
+            
+            else:
+                temp = temp.get(key)
+        
         result = temp
-    
+
     print(f"\t\t|- Value for key {from_key} is {result}")
+
+    if (result and isinstance(result, dict)):
+        # If the value is a JSON object, then we ignore the rule (since another rule must be implemented on how to handle it)
+        return None
 
     # dc contains the value
     if (format != None):
@@ -153,6 +172,58 @@ def get_rc(rc, from_key, format):
     
     return result
 
+def get_rc_ref(rc, parent, from_key):
+    """
+        Retrieves the entity referenced by the given $-prefixed key from the given RO-Crate.
+        
+        Example: Calling get_rc_ref(rc, parent, "$affiliation") on the following RO-Crate
+
+        rc: {
+            ...
+            {
+                "@id": "https://orcid.org/0000-0002-8367-6908",
+                "@type": "Person",
+                "name": "J. Xuan"
+                "affiliation": {"@id": "https:/abc"}
+            }
+            {
+                "@id": "https:/abc",
+                "@type": "Organization",
+                "name": "ABC University"
+            }
+        }
+
+        parent: {
+                "@id": "https://orcid.org/0000-0002-8367-6908",
+                "@type": "Person",
+                "name": "J. Xuan"
+                "affiliation": {"@id": "https:/abc"}
+            }
+
+        returns {
+                "@id": "https:/abc",
+                "@type": "Organization",
+                "name": "ABC University"
+            }
+    """
+    print(f"\t\t|- Retrieving referenced entity {from_key} from RO-Crate.")
+    if (from_key and not from_key.startswith("$")):
+        raise Exception(f"$-prefixed key expected, but {from_key} found.")
+    
+    id_val = parent.get(from_key[1:])
+    if (isinstance(id_val, dict)):
+        id = id_val.get("@id")
+        print(f"\t\t\t|- Id is {id}")
+    else:
+        return None
+    
+    for entity in rc.get("@graph"):
+        if (entity.get("@id") == id):
+            print(f"\t\t\t|- Found entity {entity}")
+            return entity
+    
+    return None
+ 
 
 def get_rc_ref_root(rc, from_key):
     """

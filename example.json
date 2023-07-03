@@ -25,8 +25,13 @@
      {
       "@id": "https://orcid.org/0000-0002-8367-6908",
       "@type": "Person",
-      "affiliation": "University of Technology Sydney",
+      "affiliation": {"@id": "https:/abc"},
       "name": "J. Xuan"
-  }
+    },
+    {
+      "@id": "https:/abc",
+      "@type": "Organization",
+      "name": "ABC University"
+    }
   ]
 }
