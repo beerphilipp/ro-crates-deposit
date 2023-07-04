@@ -14,29 +14,29 @@ Also, uses a mapping.json, which defines how to rewrite RO Crate format to DataC
 The output is the converted .json file
 
 """
-
-
 def main():
-    
+    """
+        For test purposes only.
+    """
     if (len(sys.argv) != 2):
         print("Usage: python converter.py <input_file> <output_file>")
         sys.exit(1)
     
     input_file = sys.argv[1]
-    #output_file = sys.argv[2]
+    f = open(input_file)
+    rc = json.load(f)
 
-    #-----------------------
+    output = convert(rc)
+
+    with open(OUTPUT_FILE, 'w') as outfile:
+        json.dump(output, outfile, indent=4)
+
+    return
+
+
+def convert(rc):
     mapping_file = open("mapping.json")
     m = json.load(mapping_file)
-
-    # -----------------------
-
-
-    # Opening JSON file
-    f = open(input_file)
-
-    # returns JSON object as a dictionary
-    rc = json.load(f)
 
     dc = setup_dc()
     print(dc)
@@ -81,10 +81,8 @@ def main():
             
             dc = set_dc(dc, to_mapping_value, from_value)
 
-    with open(OUTPUT_FILE, 'w') as outfile:
-        json.dump(dc, outfile, indent=4)
+    return dc
 
-    return
 
 def rc_get_rde(rc):
     """

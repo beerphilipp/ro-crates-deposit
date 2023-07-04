@@ -13,6 +13,7 @@
 - `onlyIf`: only counts and uses this `from` value if this function returns `True`
 
 
+RO-Crate version: v1.1
 
 ## Mapping
 

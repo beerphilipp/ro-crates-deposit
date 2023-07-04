@@ -17,11 +17,6 @@ headers = {
     "Authorization": f"Bearer {credentials.api_key}"    
 }
 
-h = {
-    "Accept": "application/json",
-    "Authorization": f"Bearer {credentials.api_key}"
-}
-
 headers_stream = {
     "Accept": "application/json",
     "Content-Type": "application/octet-stream",
@@ -29,75 +24,87 @@ headers_stream = {
 }
 
 def main():
-    
-    if (len(sys.argv) != 3):
-        print("Usage: python converter.py <input_file> <output_file>")
-        sys.exit(1)
-    
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
-
+    """
+        For test purposes only.
+    """
     metadata_file = "test/output.json"
     with open(metadata_file, "r") as f:
         metadata = json.load(f)    
-        upload(metadata, ["test/test1.txt", "test/test2.txt"])
+        deposit(metadata, ["test/test1.txt", "test/test2.txt"])
 
-    # convert DataCite XML to DataCite JSON
+def deposit(metadata, files):
+    """
+        Uploads and publishes a record to the repository.
+
+        :param metadata: The record's DataCite metadata.
+        :param files: The record's files.
+    """
+    record_id = upload(metadata, files)
+    publish_record(record_id)
 
 
-def create_draft_record(metadata, files):
+def create_draft_record(metadata):
     """
         Creates a draft record in the repository.
         Exits the program if the request fails.
 
         :param metadata: The record's metadata.
         :param files: The record's files.
-        :returns: The link to upload the record's files.
+        :returns: The record's id.
     """
     resp = requests.post(
         f"{api_url}/api/records", data=json.dumps(metadata), headers=headers, verify=False
     )
-    print(resp)
     
     if (resp.status_code != 201):
         print(f"Could not create record: {resp.status_code} {resp.text}")
         sys.exit(1)
-
-    links = resp.json()['links']
-    files_link = links['files'] # used to upload files to the record
-    return files_link
+    return resp.json().get("id")
 
 
-def upload_file(files_link, file_path):
+def start_draft_files_upload(record_id, files):
+    """
+        Starts the draft file upload.
+        This function does NOT upload any files, but initializes the upload process.
+        Exits the program if the request fails.
+        
+        :param record_id: The record's id.
+        :param files: The files to be uploaded.
+    """
+    payload = []
+    for file in files:
+        _, filename = os.path.split(file)
+        payload.append({"key": filename})
+    
+    resp = requests.post(f"{api_url}/api/records/{record_id}/draft/files", data=json.dumps(payload), headers=headers, verify=False)
+    if (resp.status_code != 201):
+        print(f"Could not initiate file upload: {resp.status_code} {resp.text}")
+        sys.exit(1)
+    return
+
+
+def upload_file(record_id, file_path):
     """
         Uploads a file to the record.
         Exits the program if the request fails.
 
-        :param files_link: The link to upload the record's files.
+        :param record_id: The record's id.
         :param file_path: The path of the file to upload.
     """
     _, file_name = os.path.split(file_path)
     print(file_name)
 
-    # Start draft file upload
-    resp = requests.post(files_link, data=json.dumps([{"key": file_name}]), headers=headers, verify=False)
-    if (resp.status_code != 201):
-        print(f"Could not initiate file upload: {resp.status_code} {resp.text}")
-        sys.exit(1)
-    file_links = resp.json()["entries"][0]["links"]
-    print(resp.json())
-
     # Upload file content
     with open(file_path, "r") as f:
             resp = requests.put(
-                file_links["content"], data=f, headers=headers_stream, verify=False
+                f"{api_url}/api/records/{record_id}/draft/files/{file_name}/content", data=f, headers=headers_stream, verify=False
             )
             if (resp.status_code != 200):
                 print(f"Could not upload file content: {resp.status_code} {resp.text}")
                 sys.exit(1)
 
     # Complete draft file upload
-    resp = requests.post(file_links['commit'], headers=h, verify=False)
+    resp = requests.post(f"{api_url}/api/records/{record_id}/draft/files/{file_name}/commit", headers=headers, verify=False)
     if (resp.status_code != 200):
         print(f"Could not commit file upload: {resp.status_code} {resp.text}")
         sys.exit(1)
@@ -105,25 +112,34 @@ def upload_file(files_link, file_path):
 
 def upload(metadata, files):
     """
-        Uploads a record to the repository.
+        Uploads a draft record to the repository.
+        Exits the program if the request fails.
+
+        :param metadata: The record's metadata.
+        :param files: The record's files.
+        :returns: The draft record's id.
     """
 
-    files_link= create_draft_record(metadata, files)
+    record_id = create_draft_record(metadata)
+    start_draft_files_upload(record_id, files)
 
     for file in files:
-        upload_file(files_link, file)
-        time.sleep(2)
-    return
+        upload_file(record_id, file)
+    return record_id
 
-    if publish:
-        # Publish record
-        req = requests.post(
-            links["publish"], headers=headers, verify=False
-        )
+def publish_record(record_id):
+    """
+        Publishes a record.
+        Exits the program if the request fails.
 
-        if (req.status_code != 202):
-            print(f"Could not publish record: {req.status_code} {req.text}")
-            sys.exit(1)
+        :param record_id: The record's id.
+    """
+    resp = requests.post(
+        f"{api_url}/api/records/{record_id}/draft/actions/publish", headers=headers, verify=False
+    )
+    if (resp.status_code != 202):
+        print(f"Could not publish record: {resp.status_code} {resp.text}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
