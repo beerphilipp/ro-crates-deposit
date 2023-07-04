@@ -188,7 +188,23 @@
             },
 
             "locations_mapping": {
-                "_ignore": true
+                "_ignore": true,
+                "mappings": {
+                    "location_mapping_1": {
+                        "from": "$contentLocation.name",
+                        "to": "metadata.locations[].features[].place"
+                    },
+                    "location_mapping_id_geonames": {
+                        "from": "$contentLocation.@id",
+                        "to": "metadata.locations[].features[].identifiers[]",
+                        "processing": "$geonamesProcessing",
+                        "value": {
+                            "scheme": "geonames",
+                            "identifier": "@@this"
+                        },
+                        "onlyIf": "?geonames"
+                    }
+                }
             },
 
             "funding_references_mapping": {

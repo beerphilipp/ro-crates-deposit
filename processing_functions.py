@@ -4,6 +4,16 @@ def dateProcessing(value):
     # TODO: Implement data processing
     return value
 
+def geonamesProcessing(value):
+    # map the geonmames url to the geonames id
+    if (not value.startswith("http://sws.geonames.org/")):
+        # not a geonnames url
+        return None
+    
+    replaced_url = value.replace("http://sws.geonames.org/", "")
+    replaced_url = replaced_url.replace("/", "")
+    return replaced_url
+
 def authorProcessing(value):
     if value == "Person":
         return "personal"
