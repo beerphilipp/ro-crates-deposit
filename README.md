@@ -11,3 +11,18 @@
 
 - `processing`: function that needs to be applied to the `from` value
 - `onlyIf`: only counts and uses this `from` value if this function returns `True`
+
+
+
+## Mapping
+
+Our mapping is defined in `mapping.json`. It can be adjusted as needed.
+
+- `from`
+- `to`
+- `value`
+- `ifNonePresent`
+- `_ignore`
+
+- `$: dereferencing`
+- `[]: array value`
