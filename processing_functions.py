@@ -15,6 +15,13 @@ def geonamesProcessing(value):
     replaced_url = replaced_url.replace("/", "")
     return replaced_url
 
+def doi_processing(value):
+    # check if value is doi format
+    # example: "https://doi.org/10.4225/59/59672c09f4a4b"
+
+    if (not value.startswith("https://doi.org/")):
+        return None
+
 def authorProcessing(value):
     if value == "Person":
         return "personal"

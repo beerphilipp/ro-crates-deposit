@@ -241,7 +241,20 @@
             },
 
             "alternative_identifier_mapping": {
-                "_ignore": true
+              "_ignore": true,
+              "mappings": {
+                "alternate_mapping": {
+                  "from": "identifier",
+                  "to": "metadata.identifiers[]",
+                  "value": {
+                    "scheme": "doi",
+                    "identifier": "@@this"
+                    },
+                  "processing": "$doi_processing",
+                  "onlyIf": "?doi"
+
+                  }
+              }
             },
 
             "related_identifiers_mapping": {
