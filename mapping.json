@@ -221,8 +221,12 @@
 
             "version_mapping": {
                 "_ignore": true,
+                "_note": "https://schema.org/version",
                 "mappings": {
-
+                    "version_mapping":{
+                        "from": "version",
+                        "to": "metadata.version"
+                    }
 
                 }
             },
