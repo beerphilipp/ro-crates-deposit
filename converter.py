@@ -425,19 +425,17 @@ def process(process_rule, value):
 def setup_dc():
     # https://inveniordm.docs.cern.ch/reference/metadata/#metadata
     dc = {
-        "id": { }, # The value of the internal record identifier.
-        "pid": { }, # Object level information about the identifier needed for operational reasons.
-        "parent": { # parent.pid: the value of the concept record identifier.
-            "id": { },
-            "access": {
-                "owned_by": [
-                    { "user": 1 } # id of user
-                 ] # array of owners
-            }
-
-
-        }, 
-        "pids": { },
+        #"id": { }, # The value of the internal record identifier.
+        #"pid": { }, # Object level information about the identifier needed for operational reasons.
+        #"parent": { # parent.pid: the value of the concept record identifier.
+        #    "id": { },
+        #    "access": {
+        #        "owned_by": [
+        #            { "user": 1 } # id of user
+        #         ] # array of owners
+        #    }
+        #}, 
+        #"pids": { },
         "access": { 
             "record": "public", # public or restricted; 1
             "files": "public", # public or restricted; 1
@@ -448,8 +446,10 @@ def setup_dc():
             }
         },
         "metadata": { },
-        "files": { },
-        "tombstone": { }
+        "files": { 
+            "enabled": True # figure out if we have to change this
+        },
+        #"tombstone": { }
         }
     return dc
 
