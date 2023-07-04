@@ -13,7 +13,8 @@
       "description": "A dataset containing some data",
       "datePublished": "2020",
       "license": {"@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"},
-      "author": {"@id": "https://orcid.org/0000-0002-8367-6908"}
+      "author": {"@id": "https://orcid.org/0000-0002-8367-6908"},
+      "publisher": {"@id": "https://ror.org/03f0f6041"}
     },
     {
       "@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
@@ -32,6 +33,13 @@
       "@id": "https:/abc",
       "@type": "Organization",
       "name": "ABC University"
+    },
+    {
+      "@id": "https://ror.org/03f0f6041",
+      "@type": "Organization",
+      "name": "University of Technology Sydney",
+      "url": "https://ror.org/03f0f6041"
     }
+
   ]
 }

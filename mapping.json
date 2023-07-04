@@ -163,7 +163,12 @@
             },
 
             "publisher_mapping": {
-                "_ignore": true
+                "mappings": {
+                    "publisher_mapping_1": {
+                        "from": "$publisher.name",
+                        "to": "metadata.publisher"
+                    }
+                }
             },
 
             "alternative_identifier_mapping": {
