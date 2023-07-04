@@ -257,14 +257,13 @@
                 "mappings": {
                   "format":{
                     "from":  "encodingFormat",
-                    "to": "formats"
+                    "to": "metadata.formats"
                   },
 
                 }
             },
 
             "locations_mapping": {
-                "_ignore": true,
                 "mappings": {
                     "location_mapping_1": {
                         "from": "$contentLocation.name",
@@ -284,7 +283,21 @@
             },
 
             "funding_references_mapping": {
-                "_ignore": true
+                "mappings": {
+                  "funding_mapping_ofr": {
+                    "from": "$funder.@id",
+                    "to": "metadata.funding.funder.id"
+                  },
+                  "funding_mapping_ror": {
+                    "from": "$funder.@id",
+                    "to": "metadata.funding.funder.id"
+                  },
+                  "award_mapping": {
+                    "_note": "https://schema.org/award",
+                    "from": "$funder.Person.award",
+                    "to": "metadata.funding.funder.award.id"
+                  }
+                }
             },
 
             "references_mapping": {

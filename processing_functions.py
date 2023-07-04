@@ -6,6 +6,7 @@ def dateProcessing(value):
 
 def geonamesProcessing(value):
     # map the geonmames url to the geonames id
+    # example: "http://sws.geonames.org/8152662/"
     if (not value.startswith("http://sws.geonames.org/")):
         # not a geonnames url
         return None
