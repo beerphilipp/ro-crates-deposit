@@ -11,35 +11,8 @@
       "@type": "Dataset",
       "name": "My Dataset",
       "description": "A dataset containing some data",
-      "datePublished": "2020",
-      "license": {"@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"},
-      "author": {"@id": "https://orcid.org/0000-0002-8367-6908"},
-      "publisher": {"@id": "https://ror.org/03f0f6041"}
-    },
-    {
-      "@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
-      "@type": "CreativeWork",
-      "description": "This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Australia License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/au/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.",
-      "identifier": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
-      "name": "Attribution-NonCommercial-ShareAlike 3.0 Australia (CC BY-NC-SA 3.0 AU)"
-     },
-     {
-      "@id": "https://orcid.org/0000-0002-8367-6908",
-      "@type": "Person",
-      "affiliation": {"@id": "https:/abc"},
-      "name": "J. Xuan"
-    },
-    {
-      "@id": "https:/abc",
-      "@type": "Organization",
-      "name": "ABC University"
-    },
-    {
-      "@id": "https://ror.org/03f0f6041",
-      "@type": "Organization",
-      "name": "University of Technology Sydney",
-      "url": "https://ror.org/03f0f6041"
+      "identifier": "https://doi.org/10.5281/zenodo.1234",
+      "datePublished": "2020"
     }
-
   ]
 }

@@ -3,6 +3,7 @@ import json
 from json import dumps, loads
 
 import processing_functions as pf
+import condition_functions as cf
 
 OUTPUT_FILE = "output.json"
 
@@ -71,10 +72,16 @@ def convert(rc):
             to_mapping_value = mapping.get("to")
             value_mapping_value = mapping.get("value")
             processing_mapping_value = mapping.get("processing")
+            only_if_value = mapping.get("onlyIf")
 
             from_value = get_rc(rc, from_mapping_value, value_mapping_value)
             if (from_value == None):
                 continue
+
+            if (only_if_value != None):
+                print(f"\t\t|- Checking condition {only_if_value}")
+                if (not cf.check_condition(only_if_value, from_value)):
+                    continue
 
             if processing_mapping_value:
                 from_value = process(processing_mapping_value, from_value)
@@ -399,6 +406,23 @@ def set_dc_old(dc, to_key, from_value, addTo=None):
                     dc = dc[keys[i]]
     return dc
 
+def check_condition(condition_rule, value):
+    """
+        Checks if a value matches a condition rule.
+        The condition rule is a string that starts with ? and is followed by the name of the function to apply.
+        The function must be defined in condition_functions.py.
+
+        :param condition_rule: The condition rule to apply.
+        :param value: The value to check.
+        :return: True if the value matches the condition, False otherwise.
+    """
+    if (not condition_rule.startswith("?")):
+        raise Exception(f"Condition rule {condition_rule} must start with ?")
+    try:
+        function = getattr(cf, condition_rule[1:])
+    except AttributeError:
+        raise NotImplementedError(f"Function {condition_rule} not implemented.")
+    return function(value)
 
 
 def process(process_rule, value):

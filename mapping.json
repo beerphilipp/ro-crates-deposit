@@ -275,7 +275,7 @@
                   "format":{
                     "from":  "encodingFormat",
                     "to": "metadata.formats"
-                  },
+                  }
 
                 }
             },
