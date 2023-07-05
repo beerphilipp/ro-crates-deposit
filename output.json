@@ -1,12 +1,31 @@
 {
     "access": {
         "record": "public",
-        "files": "public"
-      },
-    "files": {
-        "enabled": true
+        "files": "public",
+        "embargo": {
+            "active": false
+        }
     },
     "metadata": {
-        "title": "My Dataset"
+        "creators": [
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "given_name": "ABC"
+                }
+            }
+        ],
+        "title": "My Dataset",
+        "publication_date": "2020",
+        "description": "A dataset containing some data",
+        "identifiers": [
+            {
+                "scheme": "doi",
+                "identifier": "10.5281/zenodo.1234"
+            }
+        ]
+    },
+    "files": {
+        "enabled": true
     }
 }

@@ -74,17 +74,28 @@ def convert(rc):
             processing_mapping_value = mapping.get("processing")
             only_if_value = mapping.get("onlyIf")
 
-            from_value = get_rc(rc, from_mapping_value, value_mapping_value)
+            # The following steps are performed:
+            # 1. Get the value from the RO-Crate (from)
+            # 2. Check if the rule should be applied (onlyIf)
+            # 3. Process the value (processing)
+            # 4. Put the value into the correct format (value)
+            # 5. Add the value to the DataCite object (to)
+
+            from_value = get_rc(rc, from_mapping_value)
+            
             if (from_value == None):
                 continue
 
             if (only_if_value != None):
                 print(f"\t\t|- Checking condition {only_if_value}")
-                if (not cf.check_condition(only_if_value, from_value)):
+                if (not check_condition(only_if_value, from_value)):
                     continue
 
             if processing_mapping_value:
                 from_value = process(processing_mapping_value, from_value)
+            
+            if value_mapping_value:
+                from_value = transform_to_target_format(value_mapping_value, from_value)
             
             dc = set_dc(dc, to_mapping_value, from_value)
 
@@ -120,19 +131,35 @@ def rc_get_rde(rc):
             return entity
 
 
-def get_rc(rc, from_key, format):
+def transform_to_target_format(format, value):
+    """
+        Transforms the given value to the given format.
+        The format parameter is a string, which can contain the following special values:
+            - @@this: The value of the key itself
+        
+        :param format: The format to apply to the value.
+        :param value: The value to format.
+        :return: The formatted value.
+    """
+    if (format != None):
+        if ("@@this." in format):
+            raise NotImplemented(f"Indexing of @@-prefixed value formatting not yet implemented.")
+        
+        if (value):
+            print(f"\t\t|- Formatting value according to {format}.")
+            value = format_value(format, value)
+        print(f"\t\t|- Formatted value is {value}")
+    return value
+
+
+def get_rc(rc, from_key):
     """
         Retrieves the value of the given key from the given RO-Crate.
         A key consists of multiple subkeys, separated by a dot (.).
         If a subkey starts with a $, then it is a reference to another key.
 
-        The function also supports formatting of the value, using the format parameter.
-        The format parameter is a string, which can contain the following special values:
-            - @@this: The value of the key itself
-
         :param rc: The RO-Crate to retrieve the value from.
         :param from_key: The key to retrieve the value from.
-        :param format: The format to apply to the value.
         :return: The value of the given key in the given RO-Crate.
     """
     result = None
@@ -164,16 +191,6 @@ def get_rc(rc, from_key, format):
     if (result and isinstance(result, dict)):
         # If the value is a JSON object, then we ignore the rule (since another rule must be implemented on how to handle it)
         return None
-
-    # dc contains the value
-    if (format != None):
-        if ("@@this." in format):
-            raise NotImplemented(f"Indexing of @@-prefixed value formatting not yet implemented.")
-        
-        if (result):
-            print(f"\t\t|- Formatting value according to {format}.")
-            result = format_value(format, result)
-        print(f"\t\t|- Formatted value for key {from_key} is {result}")
     
     return result
 
@@ -286,24 +303,31 @@ def set_dc(dictionary, key, value=None, add_to=-1):
     keys = key.split(".")
     current_dict = dictionary
     for key_part in keys:
+        print(key_part)
         
         if key_part.endswith("[]") and not key_part[:-2] in current_dict:
             current_dict[key_part[:-2]] = [{}]
+            last_val = current_dict[key_part[:-2]]
             current_dict = current_dict[key_part[:-2]][0]
         
         elif key_part.endswith("[]") and key_part[:-2] in current_dict:
+            last_val = current_dict[key_part[:-2]]
             current_dict = current_dict[key_part[:-2]][0]
         
         elif not key_part in current_dict and not key_part.endswith("[]"):
+            last_val = current_dict
             current_dict[key_part] = {}
+            current_dict = current_dict[key_part]
 
         else:
+            last_val = current_dict
             current_dict = current_dict[key_part]
             
-        
-    
     last_key = keys[-1]
-    current_dict[last_key] = value
+    if last_key.endswith("[]"):
+        last_val[0] = value
+    else:
+        last_val[last_key] = value
     return dictionary
 
 

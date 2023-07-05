@@ -241,7 +241,6 @@
             },
 
             "alternative_identifier_mapping": {
-              "_ignore": true,
               "mappings": {
                 "alternate_mapping": {
                   "from": "identifier",

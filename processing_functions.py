@@ -21,6 +21,9 @@ def doi_processing(value):
 
     if (not value.startswith("https://doi.org/")):
         return None
+    
+    replaced_url = value.replace("https://doi.org/", "")
+    return replaced_url
 
 def authorProcessing(value):
     if value == "Person":
