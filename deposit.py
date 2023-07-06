@@ -1,5 +1,8 @@
 """
-    This script deposits a RO-Crate directory to the TU Data repository.
+    This script deposits a RO-Crate directory to an InvenioRDM repository.
+    
+    :author: Philipp Beer
+    :author: Milan Szente
 """
 import sys
 import os
@@ -10,12 +13,17 @@ import mapping.converter as converter
 import upload.uploader as uploader
 
 def main():
+    """
+        The main function of the script.
+        It takes a RO-Crate directory as input and uploads it to an InvenioRDM repository.
+    """
     if (len(sys.argv) != 2):
         print("Usage: python deposit.py <ro-crate-directory>")
         sys.exit(1)
 
     ro_crates_dir = sys.argv[1]
 
+    # Get all files in RO-Crate directory and check if it is a RO-Crate directory
     all_files = []
     for file in glob.glob(f"{ro_crates_dir}/**", recursive=True):
         if (file.endswith("ro-crate-metadata.json")):
