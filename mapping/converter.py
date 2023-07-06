@@ -1,20 +1,9 @@
 import sys
 import json
-from json import dumps, loads
 
-import processing_functions as pf
-import condition_functions as cf
+import mapping.processing_functions as pf
+import mapping.condition_functions as cf
 
-OUTPUT_FILE = "output.json"
-
-"""
-Usage: python -m converter example.json
-
-This Python code gets a .json as input, what we would like to convert
-Also, uses a mapping.json, which defines how to rewrite RO Crate format to DataCite
-The output is the converted .json file
-
-"""
 def main():
     """
         For test purposes only.
@@ -24,12 +13,13 @@ def main():
         sys.exit(1)
     
     input_file = sys.argv[1]
+    output_file = sys.argv[2]
     f = open(input_file)
     rc = json.load(f)
 
     output = convert(rc)
 
-    with open(OUTPUT_FILE, 'w') as outfile:
+    with open(output_file, 'w') as outfile:
         json.dump(output, outfile, indent=4)
 
     return
