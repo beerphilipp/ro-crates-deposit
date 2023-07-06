@@ -1,13 +1,19 @@
+"""
+    Uploads a record to the repository.
+    Used by deposit.py.
+
+    :author: Philipp Beer
+    :author: Milan Szente
+"""
 import sys
 import requests
 import credentials
 import json
 import os
-import time
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-api_url = "https://test.researchdata.tuwien.ac.at/"
+api_url = credentials.repository_base_url
 
 publish = False
 
@@ -31,6 +37,7 @@ def main():
     with open(metadata_file, "r") as f:
         metadata = json.load(f)    
         deposit(metadata, ["test/test1.txt", "test/test2.txt"])
+
 
 def deposit(metadata, files):
     """
