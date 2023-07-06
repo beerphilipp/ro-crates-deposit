@@ -1,29 +1,170 @@
 # RO-Crates Data Deposit
 
+Command line tool to deposit a [RO-Crate directory](https://www.researchobject.org/ro-crate/) to an [InvenioRDM](https://inveniordm.web.cern.ch/). 
 
-- Create an API Token
-    - Go to `https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/` and create a new token.
+## Requirements
 
-- Copy and rename the file `credentials.template.py` to `credentials.py` and fill in your API key.
+- [`Python 3.x`](https://www.python.org/downloads/)
 
+## Usage
 
-## JSON Notes
+- Create an InvenioRDM API token
+  - go to `<base_url>/account/settings/applications/tokens/new/`
+  - in case of TU Wien: go to `https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/`
 
-- `processing`: function that needs to be applied to the `from` value
-- `onlyIf`: only counts and uses this `from` value if this function returns `True`
+- Set up the environment variables
+  - copy and rename `credentials.template.py` to `credentials.py`
+  - fill in your API key
+  - fill in the InvenioRDM base URL
+    - in case of TU Wien: use `xyz`
+- Set up the Python environment
+  - Run `python3 -m pip install -r requirements.txt`
+- Upload the RO-Crate directory
+  - Run `python3 deposit.py <ro-crate-dir>` with the RO-Crate directory as parameter.
 
+## File structure
 
-RO-Crate version: v1.1
+The project consists of the following structure:
+
+- `/mapping`: Contains code for the mapping process
+  - `converter.py`: Python script used to map between RO-Crates and DataCite. Not to be called by the user.
+  - `mapping.json`: Encodes the mapping between RO-Crates and DataCite. See xyz for more. 
+  - `condition_functions.py`: Defines functions used for the mapping. See xyz for more.
+  - `processing_functions.py`: Defines functions used for the mapping. See xyz for more.
+- `/upload`: Contains code for the upload process
+  - `uploader.py`: Python script used to upload the files to the InvenioRDM. Not to be called by the user.
+- `deposit.py`: Starting point. Used to map and upload the RO-Crate directory.
+- `credentials.template.py`: Template file for the environment variables.
 
 ## Mapping
 
-Our mapping is defined in `mapping.json`. It can be adjusted as needed.
+The project aims at decoupling the definition of the mapping between RO-Crates and DataCite from code. This means, that users can quickly change/add/remove mapping rules without code changes. 
 
-- `from`
-- `to`
-- `value`
-- `ifNonePresent`
-- `_ignore`
+The mapping is implemented in `/mapping/converter.py`. The mapping rules are defined in `/mapping/mapping.json`. Processing functions and condition functions are defined in `/mapping/processing_functions.py` and `condition_functions.py`, respectively.
+
+### Mapping format
+
+#### Mapping rules
+
+Each rule may contain the following keys:
+
+
+| Key    |  Description |    Possible values | Mandatory?  |
+|---------------|-------------- | ---------------  |-------------|
+| from   |  defines the source in the RO-Crates file   |            | yes         |
+| to     |  defines the target in the DataCite file     |         | yes         |
+| value  | allows value transformations | may be a string, array, or object | no |
+| processing | uses a processing function | string starting with `$` and referencing an existing processing function | no |
+| onlyIf | uses a condition function | string starting with `?` and referencing an existing condition function | no |    
+| _ignore | ignores the rule if present | any | no |     
+
+#### Defining source and target fields
+
+TODO: Explain how to define source and target fields
+
 
 - `$: dereferencing`
 - `[]: array value`
+
+#### Value transformation
+
+TODO: add more information
+
+Every occurence of `@@this` is replaced by the source value.
+
+**Example**
+
+Given the following mapping rule:
+```json
+"languages_mapping_direct": {
+  "from": "inLanguage",
+  "to": "metadata.languages[]",
+  "value": {
+    "id": "@@this"
+  }
+}
+```
+
+The RO-Crate entry 
+```json
+...
+"inLanguage": "en"
+...
+```
+
+is transferred into 
+
+```json
+"metadata": {
+  "languages": [
+    {
+      "id": "en"
+    }
+  ]
+}
+```
+
+#### Processing functions
+
+Processing functions are functions that are applied to the raw source value extracted from the RO-Crates metadata file. When a processing function wants to be applied to a mapping rule, the `processing` entry is assigned the value `$<function_name>`. The function then needs to be implemented in `/mapping/processing_functions.py`. 
+
+**Example**
+
+Given is the following mapping of the author type:
+
+```json
+"person_or_org_type_mapping": {
+    "from": "$author.@type",
+    "to": "metadata.creators[].person_or_org.type",
+    "processing": "$authorProcessing"
+}
+```
+
+The value `Person` in the RO-Crates metadata file should be mapped to the value `personal`. Also, the value `Organization` should be mapped to the value `organizational`. The function `authorProcessing` can now be implemented in `/mapping/processing_functions.py` to achieve this logic. Note that the value of the `processing` key in the mapping rule and the function name need to coincide:
+
+```py
+def authorProcessing(value):
+    if value == "Person":
+        return "personal"
+    elif value == "Organization":
+        return "organizational"
+    else:
+        return ""
+```
+
+
+#### Condition functions
+
+Condition functions are similar to processing functions. Condition functions can be used to restrict when a mapping rule should be executed. The mapping is executed, if the function defined in the `onlyIf` key returns true.
+
+**Example**
+
+The mapping of DOI identifiers looks as follows:
+
+```json
+"alternate_mapping": {
+  "from": "identifier",
+  "to": "metadata.identifiers[]",
+  "value": {
+      "scheme": "doi",
+      "identifier": "@@this"
+  },
+  "processing": "$doi_processing",
+  "onlyIf": "?doi"
+}
+```
+
+The mapping should only be executed, if the value in the `identifier` field in the RO-Crates metadata file is indeed a DOI identifier. This check can be achieved by defining the `doi` function in `/mapping/condition_functions.py`. Note that the value of the `onlyIf` key in the mapping rule and the function name need to coincide:
+
+```py
+def doi(value):
+    return value.startswith("https://doi.org/")
+```
+
+
+#####
+
+onlyIf -> processing -> value
+
+
+RO-Crate version: v1.1
