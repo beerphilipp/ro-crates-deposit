@@ -1,3 +1,6 @@
 credentials.py
 */.DS_Store
 DS_Store
+test/*
+__pycache__/*
+```

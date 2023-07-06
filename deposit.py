@@ -6,8 +6,8 @@ import os
 import json
 import glob
 
-import converter
-import uploader
+import mapping.converter as converter
+import upload.uploader as uploader
 
 def main():
     if (len(sys.argv) != 2):
