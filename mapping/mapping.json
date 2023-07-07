@@ -211,8 +211,15 @@
             },
 
             "subjects_mapping": {
-                "_ignore": true,
-                "_note": "No subjects used"
+                "mappings": {
+                  "subjects_mapping": {
+                    "from": "keywords",
+                    "to": "metadata.subjects[]",
+                    "value":{
+                      "id": "@@this"
+                    }
+                  }
+                }
             },
 
             "languages_mapping": {
