@@ -7,8 +7,45 @@
         }
     },
     "metadata": {
-        "title": ":unkn",
-        "publication_date": ":unav",
+        "resource_type": {
+            "id": ":unkn"
+        },
+        "creators": [
+            {
+                "person_or_org": {
+                    "type": "",
+                    "given_name": null,
+                    "family_name": null,
+                    "name": null,
+                    "identifiers": [
+                        {
+                            "scheme": null,
+                            "identifier": null
+                        }
+                    ]
+                },
+                "affiliations": [
+                    {
+                        "name": null,
+                        "id": null
+                    }
+                ]
+            }
+        ],
+        "title": null,
+        "additional_titles": [
+            {
+                "title": "@@this",
+                "type": {
+                    "id": "alternative-title",
+                    "title": {
+                        "en": "Alternative Title"
+                    }
+                }
+            }
+        ],
+        "publication_date": null,
+        "description": null,
         "rights": [
             {
                 "title": {
@@ -19,7 +56,38 @@
                 },
                 "link": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"
             }
-        ]
+        ],
+        "languages": [
+            {
+                "id": "@@this"
+            }
+        ],
+        "publisher": null,
+        "sizes": null,
+        "formats": null,
+        "locations": [
+            {
+                "features": [
+                    {
+                        "place": null,
+                        "identifiers": [
+                            {
+                                "scheme": "geonames",
+                                "identifier": "@@this"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "funding": {
+            "funder": {
+                "id": null,
+                "award": {
+                    "id": null
+                }
+            }
+        }
     },
     "files": {
         "enabled": true

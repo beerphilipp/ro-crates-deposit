@@ -4,6 +4,8 @@ def dateProcessing(value):
 def geonamesProcessing(value):
     # map the geonmames url to the geonames id
     # example: "http://sws.geonames.org/8152662/"
+    if not value:
+        return None
     if (not value.startswith("http://sws.geonames.org/")):
         # not a geonnames url
         return None
@@ -15,6 +17,8 @@ def geonamesProcessing(value):
 def doi_processing(value):
     # check if value is doi format
     # example: "https://doi.org/10.4225/59/59672c09f4a4b"
+    if not value:
+        return None
 
     if (not value.startswith("https://doi.org/")):
         return None
@@ -28,7 +32,7 @@ def authorProcessing(value):
     elif value == "Organization":
         return "organizational"
     else:
-        return ""
+        return None
 
 def ISO8601Processing(value):
     return "ABC"
