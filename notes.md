@@ -57,13 +57,25 @@
 
 ## Languages mapping
 
+- `inLanugage` is mapped to `metadata.languages[]` array and gets all the values from inLanguage
+- the mapping can happend with `inLanguage.name` property, in this case `metadata.languages[]` gets the values 
+
 ## Dates mapping
+
+
 
 ## Version mapping
 
+- maps the `version` field to `metadata.version`
+
 ## Publisher mapping
 
+- maps `publisher.name` to `metadata.publisher`
+
 ## Alternative identifier mapping
+
+- maps `identifier` to `metadata.identifiers[]` array
+- must be DOI format, if not, returns empty string
 
 ## Related identifier mapping
 
