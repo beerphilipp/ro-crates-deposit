@@ -1,5 +1,11 @@
 # Notes on Mapping
 
+## Resource Type mapping
+
+- `resource_type` is a mandatory field in Datacite
+-  RO-Crate does not have a field that describes the type of the entire directory
+-  Therefore, the value `:unkn` is assigned to the `resource_type` field
+
 ## Title mapping
 
 - the `name` field is mapped to the `title` field as-is.
