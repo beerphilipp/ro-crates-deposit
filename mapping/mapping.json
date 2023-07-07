@@ -98,7 +98,6 @@
                         "value": ":unav"
                     }
                 }
-        
             },
 
             "description_mapping": {
@@ -137,6 +136,16 @@
                     "rights_link_mapping": {
                         "from": "$license.identifier",
                         "to": "metadata.rights[].link"
+                    },
+                    "rights_link_mapping_uri_direct": {
+                        "from": "license",
+                        "to": "metadata.rights[].link",
+                        "onlyIf": "?is_uri"
+                    },
+                    "rights_link_mapping_description_direct": {
+                        "from": "license",
+                        "to": "metadata.rights[].description",
+                        "onlyIf": "?is_not_uri"
                     }
                 }
             },

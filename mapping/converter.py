@@ -1,14 +1,14 @@
 import sys
 import json
 
-import mapping.processing_functions as pf
-import mapping.condition_functions as cf
+import processing_functions as pf
+import condition_functions as cf
 
 def main():
     """
         For test purposes only.
     """
-    if (len(sys.argv) != 2):
+    if (len(sys.argv) != 3):
         print("Usage: python converter.py <input_file> <output_file>")
         sys.exit(1)
     
@@ -26,7 +26,7 @@ def main():
 
 
 def convert(rc):
-    mapping_file = open("mapping.json")
+    mapping_file = open("mapping/mapping.json")
     m = json.load(mapping_file)
 
     dc = setup_dc()
