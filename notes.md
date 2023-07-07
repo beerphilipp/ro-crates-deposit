@@ -32,7 +32,7 @@
 
 ## Description mapping
 
-
+- `description` field is mapped to `metadata.description`
 
 ## Mapping of rights/licenses
 
@@ -42,6 +42,9 @@
   - if the value is freetext: only set the description value in the DataCite file
 
 ## Contributors mapping
+
+- similar mapping like in `Creators` mapping
+
 
 ## Subjects mapping
 
