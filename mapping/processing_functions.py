@@ -32,7 +32,7 @@ def authorProcessing(value):
     elif value == "Organization":
         return "organizational"
     else:
-        return ""
+        return None
 
 def ISO8601Processing(value):
     return "ABC"

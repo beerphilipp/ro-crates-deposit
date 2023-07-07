@@ -89,7 +89,7 @@ def convert(rc):
             if value_mapping_value:
                 from_value = transform_to_target_format(value_mapping_value, from_value)
             
-            if dc != None:
+            if from_value != None:
                 dc = set_dc(dc, to_mapping_value, from_value)
                 is_any_present = True
         
@@ -132,6 +132,25 @@ def rc_get_rde(rc):
         if (entity.get("@id") == root):
             return entity
 
+def contains_atatthis(value):
+    """
+        Checks if the given value contains the string "@@this".
+        The value can be a string or a dictionary.
+
+        :param value: The value to check.
+        :return: True if the value contains "@@this", False otherwise.
+    """
+    if isinstance(value, str):
+        return "@@this" in value
+    elif isinstance(value, dict):
+        for key, v in value.items():
+            if isinstance(v, str):
+                if "@@this" in v:
+                    return True
+            else:
+                return contains_atatthis(value[key])
+    
+    return False
 
 def transform_to_target_format(format, value):
     """
@@ -143,14 +162,17 @@ def transform_to_target_format(format, value):
         :param value: The value to format.
         :return: The formatted value.
     """
-    if (format != None):
-        if ("@@this." in format):
-            raise NotImplemented(f"Indexing of @@-prefixed value formatting not yet implemented.")
-        
+    if (format != None):  
+        print(contains_atatthis(format))
+        print("ABC")
         if (value):
-            print(f"\t\t|- Formatting value according to {format}.")
+            print(f"\t\t|- Formatting value {value} according to {format}.")
             format = format_value(format, value)
-        print(f"\t\t|- Formatted value is {format}")
+            return format
+        elif (value == None and contains_atatthis(format)):
+            format = None
+            return format
+        print(f"\t\t|- Formatted value {value} is {format}")
     return format
 
 
