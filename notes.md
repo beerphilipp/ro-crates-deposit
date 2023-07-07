@@ -21,9 +21,9 @@
 
 ## Additional title mapping
 
-- `@alternativeName`isn mapped to `additional_titles[]` array
-- `title` gets the value of `metadata.additional_titles[]`
-- in its type, `alternative-title` gets the value of `Alternative Title`
+- `@alternativeName` is mapped to `additional_titles`
+- a new array entry in `additional_titles` is added
+- the `lang` field is omitted, since we do not get information on the language of the additional title from RO-Crates.
 
 ## Mapping of publication date
 
