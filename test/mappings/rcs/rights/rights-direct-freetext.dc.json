@@ -1,0 +1,19 @@
+{
+    "access": {
+        "record": "public",
+        "files": "public",
+        "embargo": {
+            "active": false
+        }
+    },
+    "metadata": {
+        "rights": [
+            {
+                "description": "Free Text Licence"
+            }
+        ]
+    },
+    "files": {
+        "enabled": true
+    }
+}

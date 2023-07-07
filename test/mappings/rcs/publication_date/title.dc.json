@@ -1,0 +1,16 @@
+{
+    "access": {
+        "record": "public",
+        "files": "public",
+        "embargo": {
+            "active": false
+        }
+    },
+    "metadata": {
+        "title": "Data files associated with the manuscript:Effects of facilitated family case conferencing for ...",
+        "publication_date": ":unav"
+    },
+    "files": {
+        "enabled": true
+    }
+}

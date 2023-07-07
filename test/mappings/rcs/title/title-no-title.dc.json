@@ -1,0 +1,16 @@
+{
+    "access": {
+        "record": "public",
+        "files": "public",
+        "embargo": {
+            "active": false
+        }
+    },
+    "metadata": {
+        "title": ":unkn",
+        "publication_date": ":unav"
+    },
+    "files": {
+        "enabled": true
+    }
+}

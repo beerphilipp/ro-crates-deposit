@@ -1,0 +1,28 @@
+{
+    "access": {
+        "record": "public",
+        "files": "public",
+        "embargo": {
+            "active": false
+        }
+    },
+    "metadata": {
+        "title": "Data files associated with the manuscript:Effects of facilitated family case conferencing for ...",
+        "publication_date": "2017",
+        "description": "Palliative care planning for nursing home residents with advanced dementia ...",
+        "rights": [
+            {
+                "link": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"
+            }
+        ],
+        "identifiers": [
+            {
+                "scheme": "doi",
+                "identifier": "10.4225/59/59672c09f4a4b"
+            }
+        ]
+    },
+    "files": {
+        "enabled": true
+    }
+}

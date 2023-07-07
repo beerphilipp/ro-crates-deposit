@@ -1,0 +1,27 @@
+{
+    "access": {
+        "record": "public",
+        "files": "public",
+        "embargo": {
+            "active": false
+        }
+    },
+    "metadata": {
+        "title": "Alternative Name",
+        "additional_titles": [
+            {
+                "title": "Alternative Name",
+                "type": {
+                    "id": "alternative-title",
+                    "title": {
+                        "en": "Alternative Title"
+                    }
+                }
+            }
+        ],
+        "publication_date": ":unav"
+    },
+    "files": {
+        "enabled": true
+    }
+}
