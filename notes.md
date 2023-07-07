@@ -81,11 +81,23 @@
 
 ## Sizes mapping
 
+- `contentSize` field is mapped to `metadata.sizes`
+
 ## Formats mapping
+
+- `encodingFormat` field is mapped to `metadata.formats`
 
 ## Locations mapping
 
+- can be the `$contentLocation.name` attribute, which is mapped to `metadata.locations[].features[].place`
+
+- also can be the `$contentLocation.@id`, this field is mapped to `metadata.locations[].features[].identifiers[]`
+
 ## Funding references mapping
+
+- in OFR format, the `$funder.@id` is mapped to `metadata.funding.funder.id`
+- in ROR, `$funder.@id` relates to `metadata.funding.funder.id`
+- as for award field, `$funder.Person.award` has a mapping to `metadata.funding.funder.award.id`
 
 ## References mapping
 

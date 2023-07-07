@@ -242,7 +242,18 @@
             },
 
             "dates_mapping": {
-                "_ignore": true
+                "_ignore": true,
+                "mappings": {
+                  "dates_mapping": {
+                    "from": "temporalCoverage",
+                    "to": "metadata.dates.date",
+                        "type": {
+                            "id": "@@this",
+                            "title": {
+                                "en": "temporalCoverage"
+                            }
+                        }
+                  }
             },
 
             "version_mapping": {
