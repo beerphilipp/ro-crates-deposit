@@ -75,8 +75,8 @@ def convert(rc):
 
             from_value = get_rc(rc, from_mapping_value)
             
-            if (from_value == None):
-                continue
+            #if (from_value == None):
+            #    continue
 
             if (only_if_value != None):
                 print(f"\t\t|- Checking condition {only_if_value}")
@@ -149,9 +149,9 @@ def transform_to_target_format(format, value):
         
         if (value):
             print(f"\t\t|- Formatting value according to {format}.")
-            value = format_value(format, value)
-        print(f"\t\t|- Formatted value is {value}")
-    return value
+            format = format_value(format, value)
+        print(f"\t\t|- Formatted value is {format}")
+    return format
 
 
 def get_rc(rc, from_key):

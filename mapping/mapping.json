@@ -3,7 +3,6 @@
             "resource_type_mapping": {
                 "mappings": {
                     "resource_type_mapping_1": {
-                        "from": "",
                         "to": "metadata.resource_type.id",
                         "value": ":unkn"
                     }
