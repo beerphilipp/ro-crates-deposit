@@ -48,6 +48,9 @@
 
 ## Subjects mapping
 
+- `keywords` field is mapped to `"metadata.subjects[]` field
+- it is an array and gets all the values from keywords
+
 ## Languages mapping
 
 ## Dates mapping
