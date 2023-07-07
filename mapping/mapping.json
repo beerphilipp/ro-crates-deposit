@@ -79,9 +79,7 @@
                     }
                 },
                 "ifNonePresent": {
-                    "metadata.title": {
-                        "value": ":unkn"
-                    }
+                    "metadata.title": ":unkn"
                 }
             },
             
@@ -94,9 +92,7 @@
                     }
                 },
                 "ifNonePresent": {
-                    "metadata.publication_date": {
-                        "value": ":unav"
-                    }
+                    "metadata.publication_date": ":unav"
                 }
             },
 

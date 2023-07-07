@@ -49,6 +49,8 @@ def convert(rc):
         # TODO: implement ifNonePresent behaviour
         mappings = root_mappings.get("mappings")
 
+        is_any_present = False
+
         for mapping_key in mappings:
             # TODO: implement proper array mapping behaviour
             print(f"\t|- Applying mapping {mapping_key}")
@@ -87,7 +89,17 @@ def convert(rc):
             if value_mapping_value:
                 from_value = transform_to_target_format(value_mapping_value, from_value)
             
-            dc = set_dc(dc, to_mapping_value, from_value)
+            if dc != None:
+                dc = set_dc(dc, to_mapping_value, from_value)
+                is_any_present = True
+        
+        if (not is_any_present):
+            none_present_value = root_mappings.get("ifNonePresent")
+            if (none_present_value != None):
+                print(f"\t|- Applying ifNonePresent rule {none_present_value}")
+                for none_present_key in none_present_value:
+                    none_present_mapping_value = none_present_value.get(none_present_key)
+                    dc = set_dc(dc, none_present_key, none_present_mapping_value)
 
     return dc
 
