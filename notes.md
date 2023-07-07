@@ -30,9 +30,13 @@
 - the `datePublished` field is mapped to `metadata.publication_date`. The value is mapped as-is. Processing of the value can be added in `mapping/processing_functions.py#dateProcessing`
 - If no `datepublished` value is present, the `publication_date` is assigned the value `:unav`
 
-## Description mapping
+## Mapping of description
 
-- `description` field is mapped to `metadata.description`
+- `description` field is mapped as-is to `metadata.description`
+
+## Mapping of additional description
+
+- RO-Crates does not have any additional description. This `additional_descriptions` field in DataCite is thus never assigned any value.
 
 ## Mapping of rights/licenses
 
