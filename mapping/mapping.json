@@ -121,6 +121,7 @@
             "rights_mappings": {
                 "mappings": {
                     "rights_id_mapping": {
+                        "_ignore": true,
                         "from": "$license.@id",
                         "to": "metadata.rights[].id"
                     },
