@@ -1,0 +1,20 @@
+{
+    "access": {
+        "record": "public",
+        "files": "public",
+        "embargo": {
+            "active": false
+        }
+    },
+    "metadata": {
+        "resource_type": {
+            "id": "dataset"
+        },
+        "title": ":unkn",
+        "publication_date": ":unav",
+        "description": "Palliative care planning for nursing home residents with advanced dementia ..."
+    },
+    "files": {
+        "enabled": true
+    }
+}

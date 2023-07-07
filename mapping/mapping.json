@@ -109,8 +109,13 @@
                     "description_mapping_1": {
                         "from": "description",
                         "to": "metadata.description"
-                    },
-                    "additional_descriptions": {
+                    }
+                }
+            },
+
+            "additional_descriptions_mapping": {
+                "mappings": {
+                    "additional_descriptions_mapping_1": {
                         "_ignore": true,
                         "_note": "No additional descriptions used"
                     }
