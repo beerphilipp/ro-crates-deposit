@@ -8,12 +8,12 @@ def main():
     """
         For test purposes only.
     """
-    if (len(sys.argv) != 3):
+    if (len(sys.argv) != 2):
         print("Usage: python converter.py <input_file> <output_file>")
         sys.exit(1)
     
     input_file = sys.argv[1]
-    output_file = sys.argv[2]
+    output_file = input_file.replace(".rc.json", ".dc.json")
     f = open(input_file)
     rc = json.load(f)
 

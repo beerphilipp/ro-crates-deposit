@@ -1,5 +1,10 @@
 # Notes on Mapping
 
+## Title mapping
+
+- the `name` field is mapped to the `title` field as-is.
+- in case `name` does not exist, it falls back to using the value of `@alternativeName`
+- in case neither of those exist, `title` is assigned `:unkn`
 ## Mapping of publication date
 
 - the `datePublished` field is mapped to `metadata.publication_date`. The value is mapped as-is. Processing of the value can be added in `mapping/processing_functions.py#dateProcessing`

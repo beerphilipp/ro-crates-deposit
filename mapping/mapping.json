@@ -60,10 +60,22 @@
 
             "title_mapping": {
                 "mappings": {
+                    "name_mapping_additional_fallback": {
+                        "from": "@alternativeName",
+                        "to": "metadata.title"
+                    },
                     "name_mapping": {
                         "from": "name",
                         "to": "metadata.title"
-                    },
+                    }
+                },
+                "ifNonePresent": {
+                    "metadata.title": ":unkn"
+                }
+            },
+
+            "additional_title_mapping": {
+                "mappings": {
                     "additional_title_mapping": {
                         "from": "@alternativeName",
                         "to": "metadata.additional_titles[]",
@@ -77,9 +89,6 @@
                             }
                         }
                     }
-                },
-                "ifNonePresent": {
-                    "metadata.title": ":unkn"
                 }
             },
             
