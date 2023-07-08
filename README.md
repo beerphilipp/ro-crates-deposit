@@ -60,15 +60,15 @@ Each rule may contain the following keys:
 
 #### Defining source and target fields
 
-RO Crates and DataCite are machine-actionable metadata in JSON format.\
+RO-Crates and DataCite are machine-actionable metadata in JSON format.\
 The differences are the structure and the names of attributes.\
 To create a conversion, the mapping relation was implemented with
 source and target fields, these are defined by `"from"` and `"to"` fields.\
-`"from"` refers to RO Crate, `"to"` refers to DataCite.
+`"from"` refers to RO-Crate, `"to"` refers to DataCite.
 
 #### Value transformation
 
-The values are transformed respectively to the tags of RO Crate and DataCite.
+The values are transformed respectively to the tags of RO-Crate and DataCite.
 
 Meaning of important characters and attributes:
 - `$: dereferencing`
