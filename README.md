@@ -12,7 +12,7 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
   - go to `<base_url>/account/settings/applications/tokens/new/`
   - in case of TU Wien, go to: [https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/](https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/)
 
-![researchdata](https://github.com/beerphilipp/ro-crates-deposit/assets/64479723/76bc21c1-ba4a-4245-8d7d-2d62f8b8f428)
+![](./images/researchdata.png)
 
 
 - Set up the environmental variables
@@ -232,7 +232,7 @@ is transferred into
 
 This figure illustrates how the functions that are applied in a mapping rule.
 
-![Mapping Rule Flow](./Pictures/mapping_rule_flow.svg)
+![](./images/mapping_rule_flow.svg)
 
 ## Known problems
 
