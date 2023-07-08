@@ -100,6 +100,24 @@
           "@id": "#c2521494-9b94-4b23-a713-6b281f540823"
         }
       ]
-}
+    },
+      {
+      "@id": "pics/2017-06-11%2012.56.14.jpg",
+      "@type": ["File", "ImageObject"],
+      "contentSize": "5114778",
+      "author": {
+        "@id": "https://orcid.org/0000-0002-3545-944X"
+      },
+      "description": "Depicts a fence at a disused motor racing venue with the front part of a slightly out of focus black dog in the foreground.",
+      "encodingFormat": "image/jpeg",
+      "exifData": [
+        {
+          "@id": "#2eb90b09-a8b8-4946-805b-8cba077a7137"
+        },
+        {
+          "@id": "#c2521494-9b94-4b23-a713-6b281f540823"
+        }
+      ]
+      }
   ]
 }
