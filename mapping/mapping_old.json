@@ -1,0 +1,356 @@
+{
+    "$root": {
+            "resource_type_mapping": {
+                "mappings": {
+                    "_ignore": true,
+                    "resource_type_mapping_1": {
+                        "to": "metadata.resource_type.id",
+                        "value": "dataset"
+                    }
+                }
+            },
+
+            "creators_mapping": {
+                "mappings": {
+                    "person_or_org_type_mapping": {
+                        "_note": "Author in the root entity is a single object, not an array",
+                        "from": "$author.@type",
+                        "to": "metadata.creators[].person_or_org.type",
+                        "processing": "$authorProcessing"
+                    },
+                    "person_or_org_type_mapping_given_name": {
+                        "from": "$author.givenName",
+                        "to": "metadata.creators[].person_or_org.given_name"
+                    },
+                    "person_or_org_type_mapping_family_name": {
+                        "from": "$author.familyName",
+                        "to": "metadata.creators[].person_or_org.family_name"
+                    },
+                    "person_or_org_type_mapping_name": {
+                        "from": "$author.name",
+                        "to": "metadata.creators[].person_or_org.name"
+                    },
+                    "person_or_org_type_mapping_identifiers_scheme": {
+                        "_ignore": true,
+                        "from": "",
+                        "to": "metadata.creators[].person_or_org.identifiers[].scheme"
+                    },
+                    "person_or_org_type_mapping_identifiers_identifier": {
+                        "_ignore": true,
+                        "from": "",
+                        "to": "metadata.creators[].person_or_org.identifiers[].identifier"
+                    },
+
+                    "role_mapping": {
+                        "_ignore": true
+                    },
+
+                    "affiliation_mapping_direct": {
+                        "_ignore": true,
+                        "from": "$author.affiliation",
+                        "to": "metadata.creators[].affiliations[].name"
+                    },
+                    "affiliation_mapping_id": {
+                        "_ignore": true,
+                        "from": "$author.$affiliation.@id",
+                        "to": "metadata.creators[].affiliations[].id"
+                    },
+                    "affiliation_mapping_name": {
+                        "from": "$author.$affiliation.name",
+                        "to": "metadata.creators[].affiliations[].name"
+                    }
+                }
+            },
+
+            "title_mapping": {
+                "mappings": {
+                    "name_mapping_additional_fallback": {
+                        "from": "@alternativeName",
+                        "to": "metadata.title"
+                    },
+                    "name_mapping": {
+                        "from": "name",
+                        "to": "metadata.title"
+                    }
+                },
+                "ifNonePresent": {
+                    "metadata.title": ":unkn"
+                }
+            },
+
+            "additional_title_mapping": {
+                "mappings": {
+                    "additional_title_mapping": {
+                        "from": "@alternativeName",
+                        "to": "metadata.additional_titles[]",
+                        "value": {
+                            "title": "@@this",
+                            "type": {
+                                "id": "alternative-title",
+                                "title": {
+                                    "en": "Alternative Title"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            
+            "publication_date_mapping": {
+                "mappings": {
+                    "publication_date_mapping_1": {
+                        "from": "datePublished",
+                        "to": "metadata.publication_date",
+                        "processing": "$dateProcessing"
+                    }
+                },
+                "ifNonePresent": {
+                    "metadata.publication_date": ":unav"
+                }
+            },
+
+            "description_mapping": {
+                "mappings": {
+                    "description_mapping_1": {
+                        "from": "description",
+                        "to": "metadata.description"
+                    }
+                }
+            },
+
+            "additional_descriptions_mapping": {
+                "_note":"No additional descriptions in RO-Crates",
+                "_ignore": true,
+                "mappings": {
+                    "additional_descriptions_mapping_1": {
+                        "_ignore": true,
+                        "_note": "No additional descriptions used"
+                    }
+                }
+            },
+
+            "rights_mappings": {
+                "mappings": {
+                    "rights_id_mapping": {
+                        "_ignore": true,
+                        "from": "$license.@id",
+                        "to": "metadata.rights[].id"
+                    },
+                    "rights_title_mapping": {
+                        "from": "$license.name",
+                        "to": "metadata.rights[].title",
+                        "value": {
+                            "en": "@@this"
+                        }
+                    },
+                    "rights_description_mapping": {
+                        "from": "$license.description",
+                        "to": "metadata.rights[].description",
+                        "value": {
+                            "en": "@@this"
+                        }
+                    },
+                    "rights_link_mapping": {
+                        "from": "$license.identifier",
+                        "to": "metadata.rights[].link"
+                    },
+                    "rights_link_mapping_uri_direct": {
+                        "from": "license",
+                        "to": "metadata.rights[].link",
+                        "onlyIf": "?is_uri"
+                    },
+                    "rights_link_mapping_description_direct": {
+                        "from": "license",
+                        "to": "metadata.rights[].description",
+                        "onlyIf": "?is_not_uri"
+                    }
+                }
+            },
+
+            "contributors_mapping": {
+                "mappings": {
+                    "person_or_org_type_mapping": {
+                        "_note": "Author in the root entity is a single object, not an array",
+                        "from": "$author.@type",
+                        "to": "metadata.creators[].person_or_org.type",
+                        "processing": "$authorProcessing"
+                    },
+                    "person_or_org_type_mapping_given_name": {
+                        "from": "$author.givenName",
+                        "to": "metadata.creators[].person_or_org.given_name"
+                    },
+                    "person_or_org_type_mapping_family_name": {
+                        "from": "$author.familyName",
+                        "to": "metadata.creators[].person_or_org.family_name"
+                    },
+                    "person_or_org_type_mapping_name": {
+                        "from": "$author.name",
+                        "to": "metadata.creators[].person_or_org.name"
+                    },
+                    "person_or_org_type_mapping_identifiers_scheme": {
+                        "from": "",
+                        "to": "metadata.creators[].person_or_org.identifiers[].scheme"
+                    },
+                    "person_or_org_type_mapping_identifiers_identifier": {
+                        "from": "",
+                        "to": "metadata.creators[].person_or_org.identifiers[].identifier"
+                    },
+
+                    "role_mapping": {
+                        "_ignore": true,
+                        "from": "$author.role",
+                        "to": "metadata.creators[]."
+                    },
+
+                    "affiliation_mapping_direct": {
+                        "from": "$author.affiliation",
+                        "to": "metadata.creators[].affiliations[].name"
+                    },
+                    "affiliation_mapping_id": {
+                        "from": "$author.$affiliation.@id",
+                        "to": "metadata.creators[].affiliations[].id"
+                    },
+                    "affiliation_mapping_name": {
+                        "from": "$author.$affiliation.name",
+                        "to": "metadata.creators[].affiliations[].name"
+                    }
+                }
+            },
+
+            "subjects_mapping": {
+                "mappings": {
+                  "subjects_mapping": {
+                    "from": "keywords[]",
+                    "to": "metadata.subjects[]",
+                    "value":{
+                      "id": "@@this"
+                    }
+                  }
+                }
+            },
+
+            "languages_mapping": {
+                "mappings": {
+                  "languages_mapping_direct": {
+                    "from": "inLanguage[]",
+                    "to": "metadata.languages[]",
+                    "value":{
+                      "id": "@@this"
+                    }
+                  },
+                  "languages_mapping" : {
+                    "from": "$inLanguage[].name",
+                    "to": "metadata.languages[]",
+                    "value":{
+                      "id": "@@this"
+                    }
+                  }
+                }
+            },
+
+            "dates_mapping": {
+                "_ignore": true
+            },
+
+            "version_mapping": {
+                "_ignore": true,
+                "_note": "https://schema.org/version",
+                "mappings": {
+                    "version_mapping":{
+                        "from": "version",
+                        "to": "metadata.version"
+                    }
+
+                }
+            },
+
+            "publisher_mapping": {
+                "mappings": {
+                    "publisher_mapping_1": {
+                        "from": "$publisher.name",
+                        "to": "metadata.publisher"
+                    }
+                }
+            },
+
+            "alternative_identifier_mapping": {
+              "mappings": {
+                "alternate_mapping": {
+                  "from": "identifier[]",
+                  "to": "metadata.identifiers[]",
+                  "value": {
+                    "scheme": "doi",
+                    "identifier": "@@this"
+                    },
+                  "processing": "$doi_processing",
+                  "onlyIf": "?doi"
+
+                  }
+              }
+            },
+
+            "related_identifiers_mapping": {
+                "_ignore": true
+            },
+
+            "sizes_mapping": {
+                "mappings": {
+                  "size_mapping": {
+                    "from": "contentSize",
+                    "to": "metadata.sizes"
+                  }
+                }
+            },
+
+            "formats_mapping": {
+                "mappings": {
+                  "format":{
+                    "from":  "encodingFormat",
+                    "to": "metadata.formats"
+                  }
+
+                }
+            },
+
+            "locations_mapping": {
+                "mappings": {
+                    "location_mapping_1": {
+                        "from": "$contentLocation.name",
+                        "to": "metadata.locations[].features[].place"
+                    },
+                    "location_mapping_id_geonames": {
+                        "from": "$contentLocation.@id",
+                        "to": "metadata.locations[].features[].identifiers[]",
+                        "processing": "$geonamesProcessing",
+                        "value": {
+                            "scheme": "geonames",
+                            "identifier": "@@this"
+                        },
+                        "onlyIf": "?geonames"
+                    }
+                }
+            },
+
+            "funding_references_mapping": {
+                "mappings": {
+                  "funding_mapping_ofr": {
+                    "from": "$funder.@id",
+                    "to": "metadata.funding.funder.id"
+                  },
+                  "funding_mapping_ror": {
+                    "from": "$funder.@id",
+                    "to": "metadata.funding.funder.id"
+                  },
+                  "award_mapping": {
+                    "_note": "https://schema.org/award",
+                    "from": "$funder.Person.award",
+                    "to": "metadata.funding.funder.award.id"
+                  }
+                }
+            },
+
+            "references_mapping": {
+                "_ignore": true
+            }
+    }
+}

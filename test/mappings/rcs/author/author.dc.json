@@ -1,0 +1,42 @@
+{
+    "access": {
+        "record": "public",
+        "files": "public",
+        "embargo": {
+            "active": false
+        }
+    },
+    "metadata": {
+        "creators": [
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "name": "J. Xuan"
+                },
+                "affiliations": [
+                    {
+                        "id": "#affiliation1",
+                        "name": "Affiliation 1"
+                    }
+                ]
+            },
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "name": "J. Doe"
+                },
+                "affiliations": [
+                    {
+                        "name": "University 6"
+                    },
+                    {
+                        "name": "University 42"
+                    }
+                ]
+            }
+        ]
+    },
+    "files": {
+        "enabled": true
+    }
+}
