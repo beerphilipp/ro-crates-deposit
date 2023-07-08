@@ -15,11 +15,13 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
   - copy and rename `credentials.template.py` to `credentials.py`
   - fill in your API key
   - fill in the InvenioRDM base URL
-    - in case of TU Wien: use `xyz`
+    - in case of TU Wien: use `https://test.researchdata.tuwien.ac.at/`
 - Set up the Python environment
   - Run `python3 -m pip install -r requirements.txt`
-- Upload the RO-Crate directory
-  - Run `python3 deposit.py <ro-crate-dir>` with the RO-Crate directory as parameter.
+
+To upload the RO-Crate directory, run `python3 deposit.py <ro-crate-dir>` with the RO-Crate directory as parameter. Run `python3 deposit.py -h` for help.
+
+Note that this tool is a *best-effort* approach. After converting the metadata file, the resulting DataCite file is stored as `datacite-out.json` in the root directory. Users can adjust the generated DataCite file as needed. To use the adjusted DataCite file for upload and skip the process of conversion, run the program as follows: `python3 deposit.py [-d <datacite-file>] <ro-crate-dir>`.
 
 ## File structure
 

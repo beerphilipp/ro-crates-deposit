@@ -1,8 +1,8 @@
 import sys
 import json
 
-import processing_functions as pf
-import condition_functions as cf
+import mapping.processing_functions as pf
+import mapping.condition_functions as cf
 
 def main():
     """

@@ -8,6 +8,7 @@ import sys
 import os
 import json
 import glob
+import argparse
 
 import mapping.converter as converter
 import upload.uploader as uploader
@@ -17,11 +18,23 @@ def main():
         The main function of the script.
         It takes a RO-Crate directory as input and uploads it to an InvenioRDM repository.
     """
-    if (len(sys.argv) != 2):
-        print("Usage: python deposit.py <ro-crate-directory>")
-        sys.exit(1)
 
-    ro_crates_dir = sys.argv[1]
+    parser = argparse.ArgumentParser(
+                    description='Takes a RO-Crate directory as input and uploads it to an InvenioRDM repository')
+    
+    parser.add_argument('ro_crate_directory', help='RO-Crate directory to upload.', type=str, action='store')
+    parser.add_argument('-d', '--datacite', help="Optional DataCite metadata file. Skips the conversion process.", type=str, action='store', nargs=1)
+    args = parser.parse_args()
+
+    ro_crates_dir = args.ro_crate_directory
+    datacite_list = args.datacite
+
+    datacite_file = None
+    skip_conversion = False
+    if (datacite_list):
+        datacite_file = datacite_list[0]
+        skip_conversion = True
+        
 
     # Get all files in RO-Crate directory and check if it is a RO-Crate directory
     all_files = []
@@ -37,11 +50,15 @@ def main():
         print(f"'{ro_crates_dir}' is not a RO-Crate directory: 'ro-crate-matadata.json' not found.")
         sys.exit()
     
-    with open(ro_crates_metadata_file, "r") as f:
-        ro_crate_metadata = json.load(f)
+    if (not skip_conversion):
+        with open(ro_crates_metadata_file, "r") as f:
+            ro_crate_metadata = json.load(f)
 
-    # Convert Metadata
-    data_cite_metadata = converter.convert(ro_crate_metadata)
+        # Convert Metadata
+        data_cite_metadata = converter.convert(ro_crate_metadata)
+    else:
+        with open(datacite_file, "r") as f:
+            data_cite_metadata = json.load(f)
 
     # Upload files
     uploader.deposit(data_cite_metadata, all_files)
