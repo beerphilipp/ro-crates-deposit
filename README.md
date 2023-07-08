@@ -80,14 +80,20 @@ Each rule may contain the following keys:
 
 | Key    |  Description |    Possible values | Mandatory?  |
 |---------------|-------------- | ---------------  |-------------|
-| from   |  defines the source in the RO-Crates file   |  query string (see below)          | yes         |
-| to     |  defines the target in the DataCite file     | query string (see below)        | yes         |
-| value  | allows value transformations | may be a string, array, or object | no |
-| processing | uses a processing function | string starting with `$` and referencing an existing processing function | no |
-| onlyIf | uses a condition function | string starting with `?` and referencing an existing condition function | no |    
-| _ignore | ignores the rule if present | any | no |    
+| `from`   |  defines the source in the RO-Crates file   |  query string (see below)          | yes         |
+| `to`     |  defines the target in the DataCite file     | query string (see below)        | yes         |
+| `value`  | allows value transformations | may be a string, array, or object | no |
+| `processing` | uses a processing function | string starting with `$` and referencing an existing processing function | no |
+| `onlyIf` | uses a condition function | string starting with `?` and referencing an existing condition function | no |    
+| `_ignore` | ignores the rule if present | any | no |    
 
-![](pictures/mapping_rule_flow.svg)
+![](./pictures/mapping_rule_flow.svg)
+
+#### `from` and `to` querying
+
+To define the mapping between RO-Crates and DataCite, it is necessary to specify which field in RO-Crates is mapped to which field in DataCite. This is achieved by specifying the `from` and `to` fields in a Mapping Rule. The query language for specifying the fields is as follows:
+
+`[$?][field_name]`
 
 #### Defining source and target fields
 
