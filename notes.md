@@ -101,3 +101,4 @@
 
 ## References mapping
 
+- the references are got from `exifData.@id` and mapped to `metadata.references[].identifier` array
