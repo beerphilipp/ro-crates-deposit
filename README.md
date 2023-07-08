@@ -223,3 +223,6 @@ is transferred into
 This figure illustrates how the functions that are applied in a mapping rule.
 
 ![Mapping Rule Flow](./Pictures/mapping_rule_flow.svg)
+
+---
+RO-Crate version: v1.1
