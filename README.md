@@ -67,7 +67,9 @@ A Mapping Collection bundles different mapping rules together, e.g. rules that d
 | `_ignore`     |  ignores the mapping rule if present     | any  | no   |
 | `ifNonePresent` | in case no mapping rule is applied, the value defined here is applied | see below | no
 
-- explain ifNonePresent
+- ifNonePresent can have a value like:
+  * if unknown: `unkn`
+  * if unavailable: `unav`
 
 #### Mapping Rules
 
