@@ -25,6 +25,10 @@
                     "from": "$author[].familyName",
                     "to": "metadata.creators[].person_or_org.family_name"
                 },
+                "person_or_org_type_mapping_name_lastname": {
+                    "from": "$author[].familyName",
+                    "to": "metadata.creators[].person_or_org.name"
+                },
                 "person_or_org_type_mapping_name": {
                     "from": "$author[].name",
                     "to": "metadata.creators[].person_or_org.name"

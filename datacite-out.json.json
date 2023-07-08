@@ -14,9 +14,42 @@
         "creators": [
             {
                 "person_or_org": {
-                    "name": ":unkn",
-                    "type": "organizational"
-                }
+                    "type": "personal",
+                    "given_name": "Philipp",
+                    "family_name": "Beer",
+                    "name": "Beer",
+                    "identifiers": [
+                        {
+                            "scheme": "ORCID",
+                            "identifier": "0009-0009-6923-0027"
+                        }
+                    ]
+                },
+                "affiliations": [
+                    {
+                        "name": "TU Wien"
+                    }
+                ]
+            }
+        ],
+        "contributors": [
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "given_name": "Philipp",
+                    "family_name": "Beer",
+                    "identifiers": [
+                        {
+                            "scheme": "ORCID",
+                            "identifier": "0009-0009-6923-0027"
+                        }
+                    ]
+                },
+                "affiliations": [
+                    {
+                        "name": "TU Wien"
+                    }
+                ]
             }
         ],
         "title": "Data files associated with the manuscript:Effects of facilitated family case conferencing for ...",
