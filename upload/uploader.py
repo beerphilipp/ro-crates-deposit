@@ -29,18 +29,9 @@ headers_stream = {
     "Authorization": f"Bearer {credentials.api_key}"
 }
 
-def main():
-    """
-        For test purposes only.
-    """
-    metadata_file = "test/output.json"
-    with open(metadata_file, "r") as f:
-        metadata = json.load(f)    
-        deposit(metadata, ["test/test1.txt", "test/test2.txt"])
-
-
 def deposit(metadata, files):
     """
+        Entry point.
         Uploads and publishes a record to the repository.
 
         :param metadata: The record's DataCite metadata.
@@ -147,6 +138,3 @@ def publish_record(record_id):
     if (resp.status_code != 202):
         print(f"Could not publish record: {resp.status_code} {resp.text}")
         sys.exit(1)
-
-if __name__ == "__main__":
-    main()
