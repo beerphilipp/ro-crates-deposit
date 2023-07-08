@@ -293,7 +293,21 @@
             },
 
             "related_identifiers_mapping": {
-                "_ignore": true
+                "_ignore": true,
+                "mappings": {
+                  "related_identifiers_mapping": {
+                    "from": "$thumbnail.@id",
+                    "to": "metadata.related_identifiers.identifiers[]",
+                    "value": {
+                      "scheme": "doi",
+                      "identifier": "@@this"
+                      },
+                  "processing": "$doi_processing",
+                  "onlyIf": "?doi"
+
+                    }
+                  }
+                }
             },
 
             "sizes_mapping": {

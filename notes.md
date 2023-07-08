@@ -79,7 +79,8 @@
 
 ## Related identifier mapping
 
--
+- maps `thumbnail.@id` to `metadata.related_identifiers.identifier`
+- must be DOI format, if not, returns empty string
 
 ## Sizes mapping
 
