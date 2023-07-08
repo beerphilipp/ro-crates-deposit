@@ -10,8 +10,7 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
 
 - Create an InvenioRDM API token
   - go to `<base_url>/account/settings/applications/tokens/new/`
-  - in case of TU Wien: go to `https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/`
-
+  - in case of TU Wien: go to [https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/](https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/)
 - Set up the environment variables
   - copy and rename `credentials.template.py` to `credentials.py`
   - fill in your API key
