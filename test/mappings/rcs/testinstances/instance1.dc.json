@@ -10,16 +10,18 @@
         "resource_type": {
             "id": "dataset"
         },
-        "title": "Alternative Name",
-        "additional_titles": [
+        "creators": [
             {
-                "title": "Alternative Name",
-                "type": {
-                    "id": "alternative-title",
-                    "title": {
-                        "en": "Alternative Title"
+                "person_or_org": {
+                    "type": "personal",
+                    "given_name": "Stian",
+                    "family_name": "Soiland-Reyes"
+                },
+                "affiliations": [
+                    {
+                        "name": "Affiliation 1"
                     }
-                }
+                ]
             }
         ]
     },

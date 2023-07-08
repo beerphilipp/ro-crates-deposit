@@ -26,6 +26,16 @@ def doi_processing(value):
     replaced_url = value.replace("https://doi.org/", "")
     return replaced_url
 
+def orcidProcessing(value):
+    if not value:
+        return None
+
+    if (not value.startswith("https://orcid.org/")):
+        return None
+    
+    replaced_url = value.replace("https://orcid.org/", "")
+    return replaced_url
+
 def authorProcessing(value):
     if value == "Person":
         return "personal"

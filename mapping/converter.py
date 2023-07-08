@@ -25,6 +25,19 @@ def main():
     return
 
 
+def get_arrays_from_from_values(input_list):
+    """
+    
+    """
+    output_set = set()
+    for string in input_list:
+        delimiter_index = string.rfind("[]")
+        if delimiter_index != -1:
+                processed_string = string[:delimiter_index+2]  # Include the "[]" in the output
+                output_set.add(processed_string)
+    output_list = list(output_set)
+    return output_list
+
 def convert(rc):
     mapping_file = open("mapping/mapping.json")
     m = json.load(mapping_file)
@@ -49,10 +62,26 @@ def convert(rc):
         # TODO: implement ifNonePresent behaviour
         mappings = root_mappings.get("mappings")
 
+        # retrieve all array values
+        all_from_values = []
+        for key in mappings:
+            mapping = mappings.get(key)
+            from_value = mapping.get("from")
+            if (from_value != None):
+                all_from_values.append(from_value)
+
+        array_values = get_arrays_from_from_values(all_from_values)
+
+        # Extract all possible paths (used for arrays)
+        mapping_paths = { }
+        for i in array_values:
+            mapping_paths[i] = get_paths(rc, i)
+        
+        print(f"\t\t|- Paths: {mapping_paths}")
+
         is_any_present = False
 
         for mapping_key in mappings:
-            # TODO: implement proper array mapping behaviour
             print(f"\t|- Applying mapping {mapping_key}")
                 
             mapping = mappings.get(mapping_key)
@@ -73,25 +102,42 @@ def convert(rc):
             # 4. Put the value into the correct format (value)
             # 5. Add the value to the DataCite object (to)
 
-            from_value = get_rc(rc, from_mapping_value)
-            
-            #if (from_value == None):
-            #    continue
+            # Get the correct mapping paths. change this. now it is overriden
+            paths = [[]]
 
-            if (only_if_value != None):
-                print(f"\t\t|- Checking condition {only_if_value}")
-                if (not check_condition(only_if_value, from_value)):
-                    continue
+            if (from_mapping_value):
+                delimiter_index = from_mapping_value.rfind("[]")
+            else:
+                delimiter_index = -1
+            
+            if (delimiter_index != -1):
+                processed_string = from_mapping_value[:delimiter_index+2]
+                paths = mapping_paths.get(processed_string)
+                print(f"\t\t|- Paths: {paths}")
 
-            if processing_mapping_value:
-                from_value = process(processing_mapping_value, from_value)
-            
-            if value_mapping_value:
-                from_value = transform_to_target_format(value_mapping_value, from_value)
-            
-            if from_value != None:
-                dc = set_dc(dc, to_mapping_value, from_value)
-                is_any_present = True
+            for path in paths:
+                print(f"PATH: {path}")
+                new_path = path.copy()
+                from_value = get_rc(rc.copy(), from_mapping_value, new_path)            
+                
+                #if (from_value == None):
+                #    continue
+
+                if (only_if_value != None):
+                    print(f"\t\t|- Checking condition {only_if_value}")
+                    if (not check_condition(only_if_value, from_value)):
+                        continue
+
+                if processing_mapping_value:
+                    from_value = process(processing_mapping_value, from_value)
+                
+                if value_mapping_value:
+                    from_value = transform_to_target_format(value_mapping_value, from_value)
+                
+                if from_value != None:
+                    print(f"\t\t|- Adding {from_value} to {to_mapping_value} with path {path.copy()}")
+                    dc = set_dc(dc, to_mapping_value, from_value, path.copy())
+                    is_any_present = True
         
         if (not is_any_present):
             none_present_value = root_mappings.get("ifNonePresent")
@@ -103,6 +149,63 @@ def convert(rc):
 
     return dc
 
+
+def get_paths(rc, key):
+    print(f"\t\t|- Getting paths for {key}")
+    keys = key.split(".")
+    temp = rc_get_rde(rc)
+    paths = []
+    get_paths_recursive(rc, temp, keys, paths, [])
+    print(f"\t\t\t|- Found paths {paths}")
+    return paths
+
+def get_paths_recursive(rc, temp, keys, paths, path):
+    
+    if len(keys) == 0:
+        paths.append(path)
+        return
+
+    current_key = keys[0]
+
+    # clean key
+    cleaned_key = current_key
+    cleaned_key = cleaned_key.replace("[]", "").replace("$", "")
+
+    if (cleaned_key not in temp.keys()):
+        return
+
+    if (current_key.endswith("[]")):
+        new_current_key = current_key
+        if current_key.startswith("$"):
+            new_current_key = current_key[1:]
+        if isinstance(temp[new_current_key[:-2]], list):
+            for i in range(len(temp[new_current_key[:-2]])):
+                new_path = path.copy()
+                new_path.append(i)
+                if current_key.startswith("$"):
+                    new_temp = get_rc_ref(rc, temp, current_key[:-2], i)
+                else:
+                    new_temp = temp[new_current_key[:-2]][i]
+
+                get_paths_recursive(rc, new_temp, keys[1:], paths, new_path)
+        else:
+            new_path = path.copy()
+            new_path.append(-1)
+            if current_key.startswith("$"):
+                    new_temp = get_rc_ref(rc, temp, current_key[:-2])
+            else:
+                new_temp = temp[current_key[:-2]]
+
+            get_paths_recursive(rc, new_temp, keys[1:], paths, new_path)
+    else:
+        if (current_key == "$"):
+            temp = get_rc_ref(rc, temp, current_key)
+        else:
+            temp = temp[current_key]
+        get_paths_recursive(rc, temp, keys[1:], paths, path)
+        
+
+    return
 
 def rc_get_rde(rc):
     """
@@ -163,8 +266,6 @@ def transform_to_target_format(format, value):
         :return: The formatted value.
     """
     if (format != None):  
-        print(contains_atatthis(format))
-        print("ABC")
         if (value):
             print(f"\t\t|- Formatting value {value} according to {format}.")
             format = format_value(format, value)
@@ -176,7 +277,7 @@ def transform_to_target_format(format, value):
     return format
 
 
-def get_rc(rc, from_key):
+def get_rc(rc, from_key, path=[]):
     """
         Retrieves the value of the given key from the given RO-Crate.
         A key consists of multiple subkeys, separated by a dot (.).
@@ -189,24 +290,54 @@ def get_rc(rc, from_key):
     result = None
 
     if from_key:
-        print(f"\t\t|- Retrieving value {from_key} from RO-Crate.")
+        print(f"\t\t|- Retrieving value {from_key} with path {path} from RO-Crate.")
         keys = from_key.split(".")
+        print(keys)
         temp = rc_get_rde(rc)
-        print(temp)
+
 
         for key in keys:
+            cleaned_key = key.replace("[]", "").replace("$", "")
+            print(f"\t\t|- Cleaned key: {cleaned_key}")
             if (key.startswith("$")):
                 # we need to dereference the key
-                temp = get_rc_ref(rc, temp, key)
+                index = None
+                if (key.endswith("[]")):
+                    index = path[0]
+                    path = path[1:]
+                    if (index == -1):
+                        temp = get_rc_ref(rc, temp, "$" + cleaned_key)
+                    else:
+                        temp = get_rc_ref(rc, temp, "$" + cleaned_key, index)
+                #if (isinstance(temp[cleaned_key], list)):
+                #    index = path[0]
+                #    path = path[1:]
+                
                 if (temp == None):
                     return None
             
-            elif (key not in temp.keys()):
+            elif (cleaned_key not in temp.keys()):
                 # The key could not be found in the RO-Crate
                 return None
             
             else:
-                temp = temp.get(key)
+                if (key.endswith("[]")):
+                    index = path[0]
+                    path = path[1:]
+                    if (index == -1):
+                        temp = temp.get(cleaned_key)
+                    else:
+                        temp = temp.get(cleaned_key)[index]
+                #if (isinstance(temp[cleaned_key], list)):
+                #    if (len(path) > 0):
+                #        index = path[0]
+                #        path = path[1:]
+                #    else:
+                #        index = 0
+                #    print(f"\t\t|- Index: {index}")
+                #    temp = temp.get(cleaned_key)[index]
+                else:
+                    temp = temp.get(cleaned_key)
         
         result = temp
 
@@ -218,7 +349,7 @@ def get_rc(rc, from_key):
     
     return result
 
-def get_rc_ref(rc, parent, from_key):
+def get_rc_ref(rc, parent, from_key, index=None):
     """
         Retrieves the entity referenced by the given $-prefixed key from the given RO-Crate.
         
@@ -255,8 +386,9 @@ def get_rc_ref(rc, parent, from_key):
     print(f"\t\t|- Retrieving referenced entity {from_key} from RO-Crate.")
     if (from_key and not from_key.startswith("$")):
         raise Exception(f"$-prefixed key expected, but {from_key} found.")
-    
     id_val = parent.get(from_key[1:])
+    if (isinstance(id_val, list)):
+        id_val = id_val[index]
     if (isinstance(id_val, dict)):
         id = id_val.get("@id")
         print(f"\t\t\t|- Id is {id}")
@@ -323,20 +455,32 @@ def format_value(format, value):
     else:
         raise TypeError(f"Format must be a string or a dictionary, but is {type(format)}.")
 
-def set_dc(dictionary, key, value=None, add_to=-1):
+def set_dc(dictionary, key, value=None, path=[]):
+    """
+    """
     keys = key.split(".")
     current_dict = dictionary
+    index = -1
     for key_part in keys:
-        print(key_part)
-        
+        print(f"\t\t\t|- Key part: {key_part}")
+        if len(path) > 0:
+            index = path[0]
+        else:
+            index = 0
         if key_part.endswith("[]") and not key_part[:-2] in current_dict:
+            path = path[1:]
             current_dict[key_part[:-2]] = [{}]
             last_val = current_dict[key_part[:-2]]
-            current_dict = current_dict[key_part[:-2]][0]
+            current_dict = current_dict[key_part[:-2]][0] # index is 0 here (if we assume that paths is in ascending order)
         
         elif key_part.endswith("[]") and key_part[:-2] in current_dict:
+            path = path[1:]
             last_val = current_dict[key_part[:-2]]
-            current_dict = current_dict[key_part[:-2]][0]
+            
+            if (len(current_dict[key_part[:-2]]) <= index):
+                current_dict[key_part[:-2]].append({})
+            
+            current_dict = current_dict[key_part[:-2]][index]
         
         elif not key_part in current_dict and not key_part.endswith("[]"):
             last_val = current_dict
@@ -349,7 +493,7 @@ def set_dc(dictionary, key, value=None, add_to=-1):
             
     last_key = keys[-1]
     if last_key.endswith("[]"):
-        last_val[0] = value
+        last_val[index] = value
     else:
         last_val[last_key] = value
     return dictionary
