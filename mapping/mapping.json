@@ -353,7 +353,15 @@
             },
 
             "references_mapping": {
-                "_ignore": true
+                "_ignore": true,
+                "mappings": {
+                  "references_mappings": {
+                    "from": "$exifData.@id",
+                    "to": "metadata.references[].identifier"
+                  }
+                }
+
             }
     }
+}
 }
