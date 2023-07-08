@@ -234,6 +234,10 @@ This figure illustrates how the functions that are applied in a mapping rule.
 
 ![](./images/mapping_rule_flow.svg)
 
+## Results
+
+TODO: Add Results
+
 ## Known problems
 
 - Problem 1
