@@ -21,13 +21,14 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
   - fill in the InvenioRDM base URL in the `repository_base_url` variable
     - in case of TU Wien: use `https://test.researchdata.tuwien.ac.at/`
 
-![credentials](https://github.com/beerphilipp/ro-crates-deposit/assets/64479723/e8f27432-9831-4e4b-b9e2-543b2c3b468b)
+![Credentials](https://github.com/beerphilipp/ro-crates-deposit/assets/64479723/914d0cb4-6666-4195-a120-38ac931b3577)
+
 
 
 - Set up the Python environment
   - Run `python3 -m pip install -r requirements.txt`
 
-To upload the RO-Crate directory, run `python3 deposit.py <ro-crate-dir>` with the RO-Crate directory as parameter. Run `python3 deposit.py -h` for help.
+- To upload the RO-Crate directory, run `python3 deposit.py <ro-crate-dir>` with the RO-Crate directory as parameter. Run `python3 deposit.py -h` for help.
 
 > **_NOTE:_** This tool is a *best-effort* approach. After converting the metadata file, the resulting DataCite file is stored as\
  `datacite-out.json` in the root directory. Users can adjust the generated DataCite file as needed. To use the adjusted DataCite file for upload and skip the process of conversion, run the program as follows:\
@@ -67,7 +68,9 @@ A Mapping Collection bundles different mapping rules together, e.g. rules that d
 | `_ignore`     |  ignores the mapping rule if present     | any  | no   |
 | `ifNonePresent` | in case no mapping rule is applied, the value defined here is applied | see below | no
 
-- explain ifNonePresent
+- ifNonePresent can have a value like:
+  * if unknown: `unkn`
+  * if unavailable: `unav`
 
 #### Mapping Rules
 
