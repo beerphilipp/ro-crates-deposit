@@ -21,9 +21,6 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
   - fill in the InvenioRDM base URL in the `repository_base_url` variable
     - in case of TU Wien: use `https://test.researchdata.tuwien.ac.at/`
 
-![Credentials](https://github.com/beerphilipp/ro-crates-deposit/assets/64479723/914d0cb4-6666-4195-a120-38ac931b3577)
-
-
 
 - Set up the Python environment
   - Run `python3 -m pip install -r requirements.txt`
