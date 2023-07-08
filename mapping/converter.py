@@ -309,9 +309,8 @@ def get_rc(rc, from_key, path=[]):
                         temp = get_rc_ref(rc, temp, "$" + cleaned_key)
                     else:
                         temp = get_rc_ref(rc, temp, "$" + cleaned_key, index)
-                #if (isinstance(temp[cleaned_key], list)):
-                #    index = path[0]
-                #    path = path[1:]
+                else:
+                    temp = get_rc_ref(rc, temp, "$" + cleaned_key)
                 
                 if (temp == None):
                     return None
@@ -328,14 +327,6 @@ def get_rc(rc, from_key, path=[]):
                         temp = temp.get(cleaned_key)
                     else:
                         temp = temp.get(cleaned_key)[index]
-                #if (isinstance(temp[cleaned_key], list)):
-                #    if (len(path) > 0):
-                #        index = path[0]
-                #        path = path[1:]
-                #    else:
-                #        index = 0
-                #    print(f"\t\t|- Index: {index}")
-                #    temp = temp.get(cleaned_key)[index]
                 else:
                     temp = temp.get(cleaned_key)
         
