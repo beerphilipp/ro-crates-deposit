@@ -13,7 +13,7 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
   - in case of TU Wien, go to: [https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/](https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/)
 
 ###
-![Screenshot](researchdata.png)
+![](https://github.com/beerphilipp/ro-crates-deposit/tree/main/Pictures/researchdata.png)
 
 - Set up the environmental variables
   - copy and rename `credentials.template.py` to `credentials.py` in the same folder
