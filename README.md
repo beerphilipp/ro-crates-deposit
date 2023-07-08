@@ -62,13 +62,20 @@ Each rule may contain the following keys:
 
 TODO: Explain how to define source and target fields
 
-
-- `$: dereferencing`
-- `[]: array value`
+RO Crates and DataCite are machine-actionable metadata in JSON format.\
+The difference is the structure and tha names of attributes.\
+To manage this problem, the mapping relation was implemented with
+source and target fields, these are defined by `"from"` and `"to"` fields.\
+`"from"` refers to RO Crate, `"to"` refers to DataCite.
 
 #### Value transformation
 
-TODO: add more information
+The values are transformed respectively to the tags of RO Crate and DataCite.
+
+Meaning of important characters and attributes:
+- `$: dereferencing`
+- `[]: array value`
+- `@@this: target value gets source value`
 
 Every occurence of `@@this` is replaced by the source value.
 
