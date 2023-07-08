@@ -19,20 +19,19 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
   - copy and rename `credentials.template.py` to `credentials.py` in the same folder
   - open `creentials.py` with a text editor and fill in your API key in the `api_key` variable
   - fill in the InvenioRDM base URL in the `repository_base_url` variable
-    - in case of TU Wien: use `xyz`
-
-- Set up the environment variables
-  - copy and rename `credentials.template.py` to `credentials.py`
-  - fill in your API key
-  - fill in the InvenioRDM base URL
     - in case of TU Wien: use `https://test.researchdata.tuwien.ac.at/`
+
+![credentials](https://github.com/beerphilipp/ro-crates-deposit/assets/64479723/e8f27432-9831-4e4b-b9e2-543b2c3b468b)
+
 
 - Set up the Python environment
   - Run `python3 -m pip install -r requirements.txt`
 
 To upload the RO-Crate directory, run `python3 deposit.py <ro-crate-dir>` with the RO-Crate directory as parameter. Run `python3 deposit.py -h` for help.
 
-Note that this tool is a *best-effort* approach. After converting the metadata file, the resulting DataCite file is stored as `datacite-out.json` in the root directory. Users can adjust the generated DataCite file as needed. To use the adjusted DataCite file for upload and skip the process of conversion, run the program as follows: `python3 deposit.py [-d <datacite-file>] <ro-crate-dir>`.
+> **_NOTE:_** This tool is a *best-effort* approach. After converting the metadata file, the resulting DataCite file is stored as\
+ `datacite-out.json` in the root directory. Users can adjust the generated DataCite file as needed. To use the adjusted DataCite file for upload and skip the process of conversion, run the program as follows:\
+ `python3 deposit.py [-d <datacite-file>] <ro-crate-dir>`.
 
 ## File structure
 
