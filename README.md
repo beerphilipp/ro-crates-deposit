@@ -54,19 +54,37 @@ The mapping is implemented in `/mapping/converter.py`. The mapping rules are def
 
 ### Mapping format
 
-#### Mapping rules
+The mapping is defined in `/mapping/mapping.json` and consists of **Mapping Collections** and **Mapping Rules**.
+
+#### Mapping Collections
+
+A Mapping Collection bundles different mapping rules together, e.g. rules that define the mapping between `author` in RO-Crates and `creators` in DataCite. Each mapping collection contains the following keys:
+
+| Key    |  Description |    Possible values | Mandatory?  |
+|---------------|-------------- | ---------------  |-------------|
+| `mappings`   |  contains the mapping rules   |  mapping rules          | yes (unless `_ignore` is present)         |
+| `_ignore`     |  ignores the mapping rule if present     | any  | no   |
+| `ifNonePresent` | in case no mapping rule is applied, the value defined here is applied | see below | no
+
+- explain ifNonePresent
+
+#### Mapping Rules
+
+A Mapping Rule defines which fields from RO-Crates are mapped to which fields in DataCite.
 
 Each rule may contain the following keys:
 
 
 | Key    |  Description |    Possible values | Mandatory?  |
 |---------------|-------------- | ---------------  |-------------|
-| from   |  defines the source in the RO-Crates file   |            | yes         |
-| to     |  defines the target in the DataCite file     |         | yes         |
+| from   |  defines the source in the RO-Crates file   |  query string (see below)          | yes         |
+| to     |  defines the target in the DataCite file     | query string (see below)        | yes         |
 | value  | allows value transformations | may be a string, array, or object | no |
 | processing | uses a processing function | string starting with `$` and referencing an existing processing function | no |
 | onlyIf | uses a condition function | string starting with `?` and referencing an existing condition function | no |    
-| _ignore | ignores the rule if present | any | no |     
+| _ignore | ignores the rule if present | any | no |    
+
+![](pictures/mapping_rule_flow.svg)
 
 #### Defining source and target fields
 
