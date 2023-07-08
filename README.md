@@ -12,6 +12,7 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
   - go to `<base_url>/account/settings/applications/tokens/new/`
   - in case of TU Wien, go to: [https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/](https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/)
 
+###
 ![Screenshot](researchdata.png)
 
 - Set up the environmental variables
