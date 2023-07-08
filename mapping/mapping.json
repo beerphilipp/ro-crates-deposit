@@ -1,5 +1,6 @@
 {
     "$root": {
+
         "resource_type_mapping": {
             "mappings": {
                 "resource_type_mapping_1": {
@@ -242,28 +243,32 @@
             }
         },
 
-            "dates_mapping": {
-                "_ignore": true,
-                "mappings": {
-                  "dates_mapping": {
-                    "from": "temporalCoverage",
-                    "to": "metadata.dates.date",
-                        "type": {
-                            "id": "@@this",
-                            "title": {
-                                "en": "temporalCoverage"
-                            }
+        "dates_mapping": {
+            "_ignore": true,
+            "mappings": {
+                "dates_mapping": {
+                "from": "temporalCoverage",
+                "to": "metadata.dates.date",
+                    "type": {
+                        "id": "@@this",
+                        "title": {
+                            "en": "temporalCoverage"
                         }
-                  }
-            },
+                    }
+                }
+            }
+        },
 
-            "version_mapping": {
-                "_note": "https://schema.org/version",
-                "mappings": {
-                    "version_mapping":{
-                        "from": "version",
-                        "to": "metadata.version"
-                    },
+        "version_mapping": {
+            "_note": "https://schema.org/version",
+            "mappings": {
+                "version_mapping":{
+                    "from": "version",
+                    "to": "metadata.version"
+                }
+            }
+        },
+        
         "publisher_mapping": {
             "mappings": {
                 "publisher_mapping_1": {
@@ -288,10 +293,6 @@
             }
           },
 
-          "related_identifiers_mapping": {
-            "_ignore": true
-        },
-
         "sizes_mapping": {
             "mappings": {
               "size_mapping": {
@@ -312,23 +313,20 @@
             }
         },
 
-            "related_identifiers_mapping": {
-                "_ignore": true,
-                "mappings": {
-                  "related_identifiers_mapping": {
+        "related_identifiers_mapping": {
+            "mappings": {
+                "related_identifiers_mapping": {
                     "from": "$thumbnail.@id",
                     "to": "metadata.related_identifiers.identifiers[]",
                     "value": {
-                      "scheme": "doi",
-                      "identifier": "@@this"
-                      },
-                  "processing": "$doi_processing",
-                  "onlyIf": "?doi"
-
-                    }
-                  }
+                        "scheme": "doi",
+                        "identifier": "@@this"
+                    },
+                    "processing": "$doi_processing",
+                    "onlyIf": "?doi"
                 }
-            },
+            }
+        },
 
 
         "locations_mapping": {
@@ -369,16 +367,13 @@
         },
 
 
-            "references_mapping": {
-                "_ignore": true,
-                "mappings": {
-                  "references_mappings": {
+        "references_mapping": {
+            "mappings": {
+                "references_mappings": {
                     "from": "$exifData.@id",
                     "to": "metadata.references[].identifier"
-                  }
                 }
-
             }
+        }
     }
-}
 }
