@@ -166,10 +166,8 @@ def doi(value):
     return value.startswith("https://doi.org/")
 ```
 
-
-#####
-
-onlyIf -> processing -> value
+Visualizing the progress:\
+`onlyIf` &rarr; `processing` &rarr; `value`
 
 
 RO-Crate version: v1.1
