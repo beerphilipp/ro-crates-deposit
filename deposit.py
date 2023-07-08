@@ -56,8 +56,12 @@ def main():
         with open(ro_crates_metadata_file, "r") as f:
             ro_crate_metadata = json.load(f)
 
+        metadata_only = False
+        if len(all_files) == 0:
+            metadata_only = True
+
         # Convert Metadata
-        data_cite_metadata = converter.convert(ro_crate_metadata)
+        data_cite_metadata = converter.convert(ro_crate_metadata, metadata_only=metadata_only)
         # store datacite metadata
         with open("datacite-out.json.json", "w") as f:
             json.dump(data_cite_metadata, f, indent=4)

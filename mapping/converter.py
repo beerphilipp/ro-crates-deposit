@@ -38,11 +38,13 @@ def get_arrays_from_from_values(input_list):
     output_list = list(output_set)
     return output_list
 
-def convert(rc):
+def convert(rc, metadata_only=False):
     mapping_file = open("mapping/mapping.json")
     m = json.load(mapping_file)
 
     dc = setup_dc()
+    if (metadata_only):
+        dc["files"]["enabled"] = False
     print(dc)
 
     root_rules = m.get("$root")
