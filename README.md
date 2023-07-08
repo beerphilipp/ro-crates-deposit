@@ -169,5 +169,5 @@ def doi(value):
 Visualizing the progress:\
 `onlyIf` &rarr; `processing` &rarr; `value`
 
-
+---
 RO-Crate version: v1.1
