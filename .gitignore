@@ -2,4 +2,8 @@ credentials.py
 */.DS_Store
 .DS_Store
 __pycache__/*
+__pycache__
 mapping/__pycache__
+.venv
+*/__pycache__/
+.idea
