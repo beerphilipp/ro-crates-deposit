@@ -225,4 +225,4 @@ is transferred into
 
 This figure illustrates how the functions that are applied in a mapping rule.
 
-![Mapping Rule Flow](./pictures/mapping_rule_flow.svg)
+![Mapping Rule Flow](./Pictures/mapping_rule_flow.svg)
