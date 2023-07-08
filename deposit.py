@@ -56,6 +56,9 @@ def main():
 
         # Convert Metadata
         data_cite_metadata = converter.convert(ro_crate_metadata)
+        # store datacite metadata
+        with open("datacite-out.json.json", "w") as f:
+            json.dump(data_cite_metadata, f, indent=4)
     else:
         with open(datacite_file, "r") as f:
             data_cite_metadata = json.load(f)
