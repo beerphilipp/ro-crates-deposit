@@ -1,0 +1,92 @@
+{
+    "access": {
+        "record": "public",
+        "files": "public",
+        "embargo": {
+            "active": false
+        }
+    },
+    "metadata": {
+        "resource_type": {
+            "id": "dataset"
+        },
+        "creators": [
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "given_name": "Stian",
+                    "family_name": "Soiland-Reyes",
+                    "identifiers": [
+                        {
+                            "scheme": "ORCID",
+                            "identifier": "0000-0002-2191-666X"
+                        }
+                    ]
+                },
+                "affiliations": [
+                    {
+                        "name": "Affiliation 1"
+                    }
+                ]
+            },
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "given_name": "Given Name",
+                    "family_name": "Family Name",
+                    "identifiers": [
+                        {
+                            "scheme": "ORCID",
+                            "identifier": "0000-0002-2191-666F"
+                        }
+                    ]
+                },
+                "affiliations": [
+                    {
+                        "name": "Aff2"
+                    },
+                    {
+                        "name": "Aff3"
+                    }
+                ]
+            }
+        ],
+        "title": "Dataset Name",
+        "publication_date": "2017",
+        "description": "Dataset Description",
+        "rights": [
+            {
+                "title": {
+                    "en": "Attribution-NonCommercial-ShareAlike 3.0 Australia (CC BY-NC-SA 3.0 AU)"
+                },
+                "description": {
+                    "en": "This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Australia License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/au/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA."
+                },
+                "link": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"
+            }
+        ],
+        "subjects": [
+            {
+                "subject": "keyword1"
+            },
+            {
+                "subject": "keyword1"
+            }
+        ],
+        "languages": [
+            {
+                "id": "en"
+            }
+        ],
+        "publisher": "Dataset Name",
+        "identifiers": [
+            {
+                "scheme": "doi",
+                "identifier": "10.5281/zenodo.1234"
+            }
+        ]
+    },
+    "files": {
+        "enabled": true
+    }
+}

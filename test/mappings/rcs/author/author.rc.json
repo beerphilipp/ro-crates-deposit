@@ -1,0 +1,39 @@
+{
+    "@context": "https://w3id.org/ro/crate/1.1/context", 
+    "@graph": [
+        {
+            "@type": "CreativeWork",
+            "@id": "ro-crate-metadata.json",
+            "conformsTo": {"@id": "https://w3id.org/ro/crate/1.1"},
+            "about": {"@id": "./"}
+        },  
+        {
+            "@id": "./",
+            "@type": "Dataset",
+            "author": [
+                {
+                    "@id": "https://orcid.org/0000-0002-8367-6908"
+                },
+                {
+                    "@id": "#author2"
+                }
+            ]
+        },
+        {
+            "@id": "https://orcid.org/0000-0002-8367-6908",
+            "@type": "Person",
+            "affiliation": {"@id": "#affiliation1"},
+            "name": "J. Xuan"
+        },
+        {
+            "@id": "#author2",
+            "@type": "Person",
+            "affiliation": ["University 6", "University 42"],
+            "name": "J. Doe"
+        },
+        {
+            "@id": "#affiliation1",
+            "name": "Affiliation 1"
+        }
+    ]
+}

@@ -7,6 +7,9 @@
         }
     },
     "metadata": {
+        "resource_type": {
+            "id": "dataset"
+        },
         "title": "Primary title",
         "additional_titles": [
             {

@@ -12,3 +12,6 @@ def doi(value):
         Checks if the value is a doi url
     """
     return value and value.startswith("https://doi.org/")
+
+def orcid(value):
+    return value and value.startswith("https://orcid.org/")
