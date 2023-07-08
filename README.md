@@ -37,9 +37,9 @@ The project consists of the following structure:
 
 - `/mapping`: Contains code for the mapping process
   - `converter.py`: Python script used to map between RO-Crates and DataCite. Not to be called by the user.
-  - `mapping.json`: Encodes the mapping between RO-Crates and DataCite. See xyz for more. 
-  - `condition_functions.py`: Defines functions used for the mapping. See xyz for more.
-  - `processing_functions.py`: Defines functions used for the mapping. See xyz for more.
+  - `mapping.json`: Encodes the mapping between RO-Crates and DataCite. See [Mapping](#mapping) for more. 
+  - `condition_functions.py`: Defines functions used for the mapping. See [Conditon Functions](#condition-functions) for more.
+  - `processing_functions.py`: Defines functions used for the mapping. See [Processing Functions](#processing-functions) for more.
 - `/upload`: Contains code for the upload process
   - `uploader.py`: Python script used to upload the files to the InvenioRDM. Not to be called by the user.
 - `deposit.py`: Starting point. Used to map and upload the RO-Crate directory.
