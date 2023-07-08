@@ -4,7 +4,7 @@
         "files": "restricted",
         "embargo": {
             "active": true,
-            "until": "2017-07-08"
+            "until": "2024-01-01"
         }
     },
     "metadata": {
@@ -20,7 +20,7 @@
             }
         ],
         "title": "Data files associated with the manuscript:Effects of facilitated family case conferencing for ...",
-        "publication_date": "2017",
+        "publication_date": "2024-01-01",
         "description": "Palliative care planning for nursing home residents with advanced dementia ...",
         "rights": [
             {

@@ -109,3 +109,4 @@
 ## Embargo mapping
 
 - if the `datePublished` field in the RO-Crate metadata file is in the future, an embargo is applied to the resource
+- the processing of the data to set the embargo period is a best-effort approach and is located in `mapping/processing_functions.py#embargoDateProcessing`

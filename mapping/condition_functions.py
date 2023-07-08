@@ -17,6 +17,9 @@ def orcid(value):
     return value and value.startswith("https://orcid.org/")
 
 def embargoed(value):
+    """
+        Checks if the value is a date in the future.
+    """
     from dateutil.parser import parse
     from datetime import datetime
 
@@ -25,6 +28,6 @@ def embargoed(value):
 
     fuzzy_date = parse(value, fuzzy=True)
     now = datetime.now()
-    if (now > fuzzy_date):
+    if (now < fuzzy_date):
         return True
     return False
