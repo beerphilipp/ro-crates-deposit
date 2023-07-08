@@ -10,8 +10,7 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
 
 - Create an InvenioRDM API token
   - go to `<base_url>/account/settings/applications/tokens/new/`
-  - in case of TU Wien: go to `https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/`
-
+  - in case of TU Wien, go to: [https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/](https://test.researchdata.tuwien.ac.at/account/settings/applications/tokens/new/)
 - Set up the environment variables
   - copy and rename `credentials.template.py` to `credentials.py`
   - fill in your API key
@@ -60,15 +59,20 @@ Each rule may contain the following keys:
 
 #### Defining source and target fields
 
-TODO: Explain how to define source and target fields
-
-
-- `$: dereferencing`
-- `[]: array value`
+RO-Crates and DataCite are machine-actionable metadata in JSON format.\
+The differences are the structure and the names of attributes.\
+To create a conversion, the mapping relation was implemented with
+source and target fields, these are defined by `"from"` and `"to"` fields.\
+`"from"` refers to RO-Crate, `"to"` refers to DataCite.
 
 #### Value transformation
 
-TODO: add more information
+The values are transformed respectively to the tags of RO-Crate and DataCite.
+
+Meaning of important characters and attributes:
+- `$: dereferencing`
+- `[]: array value`
+- `@@this: target value gets source value`
 
 Every occurence of `@@this` is replaced by the source value.
 
@@ -161,10 +165,8 @@ def doi(value):
     return value.startswith("https://doi.org/")
 ```
 
+Visualizing the progress:\
+`onlyIf` &rarr; `processing` &rarr; `value`
 
-#####
-
-onlyIf -> processing -> value
-
-
+---
 RO-Crate version: v1.1

@@ -1,0 +1,123 @@
+{ "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+        "@type": "CreativeWork",
+        "@id": "ro-crate-metadata.json",
+        "conformsTo": {"@id": "https://w3id.org/ro/crate/1.1"},
+        "about": {"@id": "./"}
+    },
+    {
+      "@type": "Dataset",
+      "@id": "./",
+      "author": {"@id": "https://orcid.org/0000-0002-8367-6908"},
+      "title": [
+      "Western Sydney Women's Oral History Project: Flier (illustrated)"
+      ],
+      "description": [
+      "Flier (illustrated) seeking participants for the project."
+    ],
+      "publisher": { "@id": "https://westernsydney.edu.au"},
+      "rights": "Copyright University of Western Sydney 2015",
+      "originalFormat": "Paper",
+      "identifier": "FTF_flier_illust",
+      "temporalCoverage": "2014/2015",
+      "version": "1.2",
+      "rightsHolder": [
+      "Western Sydney University"
+      ],
+      "license": {
+        "@id": "https://creativecommons.org/licenses/by/3.0/au/"
+      },
+      "funder": {
+        "@id": "https://ror.org/038sjwq14"
+      },
+      "hasFile": [
+        {
+         "@id": "content/166/original_eece70f73bf8979c0bcfb97065948531.pdf"
+        }
+      ],
+      "thumbnail": [
+      {
+      "@id": "files/383/thumbnail_c0f1189ec13ca936e8f556161663d4ba.jpg"
+      }
+      ],
+      "name": [
+        "Photo of Eugenie Stapleton 1"
+      ],
+      "copyrightHolder": [
+        { "@id": "https://westernsydney.edu.au"}
+      ],
+      "copyright": [
+        "Copyright University of Western Sydney 2015"
+      ]
+    },
+      {
+        "@id": "pics/19093074_10155469333581584_5707039334816454031_o.jpg",
+        "@type": "File",
+        "contentLocation": {
+        "@id": "http://sws.geonames.org/8152662/"
+      },
+        "contentSize": "132765",
+        "author": {
+        "@id": "https://orcid.org/0000-0002-3545-944X"
+        }
+      },
+    {
+      "@id": "https://orcid.org/0000-0001-6121-5409",
+      "@type": "Person",
+      "contactPoint": {
+        "@id": "mailto:tim.luckett@uts.edu.au"
+      },
+      "familyName": "Luckett",
+      "givenName": "Tim",
+      "identifier": "https://orcid.org/0000-0001-6121-5409",
+      "name": "Tim Luckett",
+      "affiliation": "University of Technology Sydney"
+    },
+    {
+      "keywords": "Sydney, Oral, History, Flier",
+      "about": { "@id": "https://omeka.westernsydney.edu.au/farmstofreeways/items/show/166" }
+    },
+    {
+      "inLanguage": {
+        "name": "eng"
+      }
+    },
+    {
+      "@id": "pics/2017-06-11%2012.56.14.jpg",
+      "@type": ["File", "ImageObject"],
+      "contentSize": "5114778",
+      "author": {
+        "@id": "https://orcid.org/0000-0002-3545-944X"
+      },
+      "description": "Depicts a fence at a disused motor racing venue with the front part of a slightly out of focus black dog in the foreground.",
+      "encodingFormat": "image/jpeg",
+      "exifData": [
+        {
+          "@id": "#2eb90b09-a8b8-4946-805b-8cba077a7137"
+        },
+        {
+          "@id": "#c2521494-9b94-4b23-a713-6b281f540823"
+        }
+      ]
+    },
+    {
+      "@id": "pics/2017-06-11%2012.56.14.jpg",
+      "@type": ["File", "ImageObject"],
+      "contentSize": "5114778",
+      "author": {
+        "@id": "https://orcid.org/0000-0002-3545-944X"
+      },
+      "description": "Depicts a fence at a disused motor racing venue with the front part of a slightly out of focus black dog in the foreground.",
+      "encodingFormat": "image/jpeg",
+      "exifData": [
+        {
+          "@id": "#2eb90b09-a8b8-4946-805b-8cba077a7137"
+        },
+        {
+          "@id": "#c2521494-9b94-4b23-a713-6b281f540823"
+        }
+      ]
+    }
+  ]
+}

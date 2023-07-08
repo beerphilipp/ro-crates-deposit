@@ -57,23 +57,51 @@
 
 ## Languages mapping
 
+- `inLanugage` is mapped to `metadata.languages[]` array and gets all the values from inLanguage
+- the mapping can happen with `inLanguage.name` property, in this case `metadata.languages[]` gets the values 
+
 ## Dates mapping
+
+- `temporalCoverage` is mapped to `metadata.dates.date`, and gets the value from the RO Crate
 
 ## Version mapping
 
+- maps the `version` field to `metadata.version`
+
 ## Publisher mapping
+
+- maps `publisher.name` to `metadata.publisher`
 
 ## Alternative identifier mapping
 
+- maps `identifier` to `metadata.identifiers[]` array
+- must be DOI format, if not, returns empty string
+
 ## Related identifier mapping
+
+- maps `thumbnail.@id` to `metadata.related_identifiers.identifier`
+- must be DOI format, if not, returns empty string
 
 ## Sizes mapping
 
+- `contentSize` field is mapped to `metadata.sizes`
+
 ## Formats mapping
+
+- `encodingFormat` field is mapped to `metadata.formats`
 
 ## Locations mapping
 
+- can be the `$contentLocation.name` attribute, which is mapped to `metadata.locations[].features[].place`
+
+- also can be the `$contentLocation.@id`, this field is mapped to `metadata.locations[].features[].identifiers[]`
+
 ## Funding references mapping
+
+- in OFR format, the `$funder.@id` is mapped to `metadata.funding.funder.id`
+- in ROR, `$funder.@id` relates to `metadata.funding.funder.id`
+- as for award field, `$funder.Person.award` has a mapping to `metadata.funding.funder.award.id`
 
 ## References mapping
 
+- the references are got from `exifData.@id` and mapped to `metadata.references[].identifier` array
