@@ -15,3 +15,16 @@ def doi(value):
 
 def orcid(value):
     return value and value.startswith("https://orcid.org/")
+
+def embargoed(value):
+    from dateutil.parser import parse
+    from datetime import datetime
+
+    if value == None:
+        return False
+
+    fuzzy_date = parse(value, fuzzy=True)
+    now = datetime.now()
+    if (now > fuzzy_date):
+        return True
+    return False

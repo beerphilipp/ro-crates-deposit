@@ -46,3 +46,13 @@ def authorProcessing(value):
 
 def ISO8601Processing(value):
     return "ABC"
+
+def embargoDateProcessing(value):
+    from dateutil.parser import parse
+    from datetime import datetime
+    
+    if value == None:
+        return None
+    fuzzy_date = parse(value, fuzzy=True)
+    return str(fuzzy_date)
+    

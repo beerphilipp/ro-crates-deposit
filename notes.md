@@ -105,3 +105,7 @@
 ## References mapping
 
 - the references are got from `exifData.@id` and mapped to `metadata.references[].identifier` array
+
+## Embargo mapping
+
+- if the `datePublished` field in the RO-Crate metadata file is in the future, an embargo is applied to the resource

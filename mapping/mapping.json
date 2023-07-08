@@ -372,12 +372,34 @@
 
 
         "references_mapping": {
+            "_ignore": true,
             "mappings": {
                 "references_mappings": {
                     "from": "$exifData.@id",
                     "to": "metadata.references[].identifier"
                 }
             }
+        },
+
+        "embargo_mapping": {
+            "mappings": {
+                "embargo_mapping_1": {
+                    "from": "datePublished",
+                    "to": "access",
+                    "onlyIf": "?embargoed",
+                    "processing": "$embargoDateProcessing",
+                    "value": {
+                        "record": "restricted",
+                        "files": "restricted",
+                        "embargo": {
+                            "active": true,
+                            "until": "@@this"
+                        } 
+                    }
+                }
+                
+            }
         }
+
     }
 }

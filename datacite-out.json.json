@@ -1,9 +1,10 @@
 {
     "access": {
-        "record": "public",
-        "files": "public",
+        "record": "restricted",
+        "files": "restricted",
         "embargo": {
-            "active": false
+            "active": true,
+            "until": "@@this"
         }
     },
     "metadata": {
