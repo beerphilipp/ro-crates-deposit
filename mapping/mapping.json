@@ -62,6 +62,10 @@
                     "from": "$author[].$affiliation[].name",
                     "to": "metadata.creators[].affiliations[].name"
                 }
+            },
+            "ifNonePresent": {
+                "metadata.creators[].person_or_org.name": ":unkn",
+                "metadata.creators[].person_or_org.type": "organizational"
             }
         },
 
