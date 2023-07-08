@@ -65,9 +65,17 @@ A Mapping Collection bundles different mapping rules together, e.g. rules that d
 | `_ignore`     |  ignores the mapping rule if present     | any  | no   |
 | `ifNonePresent` | in case no mapping rule is applied, the value defined here is applied | see below | no
 
-- ifNonePresent can have a value like:
-  * if unknown: `unkn`
-  * if unavailable: `unav`
+##### `ifNonePresent`
+
+`ifNonePresent` can be used to specify what happens if no Mapping Rule of the defined Mapping Rules in the current Mapping Collection is applied. The value of the field is an array of the following form: 
+
+```json
+{
+  "<to_query>": "<value>"
+}
+```
+
+In case no Mapping Rule is applied, the value specified in `<value>` is applied to the field defined by `<to_query>` in the DataCite.
 
 #### Mapping Rules
 
