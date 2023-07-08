@@ -24,10 +24,12 @@ def main():
     
     parser.add_argument('ro_crate_directory', help='RO-Crate directory to upload.', type=str, action='store')
     parser.add_argument('-d', '--datacite', help="Optional DataCite metadata file. Skips the conversion process.", type=str, action='store', nargs=1)
+    parser.add_argument('-p', '--publish', help="Publish the record after uploading.", action='store_true')
     args = parser.parse_args()
 
     ro_crates_dir = args.ro_crate_directory
     datacite_list = args.datacite
+    publish = args.publish
 
     datacite_file = None
     skip_conversion = False
@@ -64,7 +66,7 @@ def main():
             data_cite_metadata = json.load(f)
 
     # Upload files
-    uploader.deposit(data_cite_metadata, all_files)
+    uploader.deposit(data_cite_metadata, all_files, publish=publish)
 
 
 if __name__ == "__main__":

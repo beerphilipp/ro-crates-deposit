@@ -15,8 +15,6 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 api_url = credentials.repository_base_url
 
-publish = False
-
 headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
@@ -29,16 +27,18 @@ headers_stream = {
     "Authorization": f"Bearer {credentials.api_key}"
 }
 
-def deposit(metadata, files):
+def deposit(metadata, files, publish=False):
     """
         Entry point.
         Uploads and publishes a record to the repository.
 
         :param metadata: The record's DataCite metadata.
         :param files: The record's files.
+        :param publish: Whether to publish the record after uploading.
     """
     record_id = upload(metadata, files)
-    publish_record(record_id)
+    if publish:
+        publish_record(record_id)
 
 
 def create_draft_record(metadata):

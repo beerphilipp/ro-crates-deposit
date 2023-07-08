@@ -25,7 +25,10 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
 - Set up the Python environment
   - Run `python3 -m pip install -r requirements.txt`
 
-- To upload the RO-Crate directory, run `python3 deposit.py <ro-crate-dir>` with the RO-Crate directory as parameter. Run `python3 deposit.py -h` for help.
+- Uploa the RO-Crate directory
+  - Run `python3 deposit.py <ro-crate-dir>` with the RO-Crate directory as parameter. The record is saved as a draft and not published
+  - Run `python3 deposit.py -p <ro-crate-dir>` with the RO-Crate directory as parameter to publish the record.
+  - Run `python3 deposit.py -h` for help.
 
 > **NOTE:** This tool is a *best-effort* approach. After converting the metadata file, the resulting DataCite file is stored as `datacite-out.json` in the root directory. Users can adjust the generated DataCite file as needed. To use the adjusted DataCite file for upload and skip the process of conversion, run the program as follows:\
  `python3 deposit.py -d <datacite-file> <ro-crate-dir>`.
