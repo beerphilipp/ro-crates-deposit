@@ -17,7 +17,7 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
 
 - Set up the environmental variables
   - copy and rename `credentials.template.py` to `credentials.py` in the same folder
-  - open `creentials.py` with a text editor and fill in your API key in the `api_key` variable
+  - open `credentials.py` with a text editor and fill in your API key in the `api_key` variable
   - fill in the InvenioRDM base URL in the `repository_base_url` variable
     - in case of TU Wien: use `https://test.researchdata.tuwien.ac.at/`
 
