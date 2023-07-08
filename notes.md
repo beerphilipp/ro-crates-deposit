@@ -58,11 +58,11 @@
 ## Languages mapping
 
 - `inLanugage` is mapped to `metadata.languages[]` array and gets all the values from inLanguage
-- the mapping can happend with `inLanguage.name` property, in this case `metadata.languages[]` gets the values 
+- the mapping can happen with `inLanguage.name` property, in this case `metadata.languages[]` gets the values 
 
 ## Dates mapping
 
-
+- `temporalCoverage` is mapped to `metadata.dates.date`, and gets the value from the RO Crate
 
 ## Version mapping
 
@@ -78,6 +78,8 @@
 - must be DOI format, if not, returns empty string
 
 ## Related identifier mapping
+
+-
 
 ## Sizes mapping
 
