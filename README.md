@@ -85,64 +85,44 @@ Each rule may contain the following keys:
 | `onlyIf` | uses a condition function | string starting with `?` and referencing an existing condition function | no |    
 | `_ignore` | ignores the rule if present | any | no |    
 
-![](./pictures/mapping_rule_flow.svg)
-
 #### `from` and `to` querying
 
-To define the mapping between RO-Crates and DataCite, it is necessary to specify which field in RO-Crates is mapped to which field in DataCite. This is achieved by specifying the `from` and `to` fields in a Mapping Rule. The query language for specifying the fields is as follows:
-
-`[$?][field_name]`
-
-#### Defining source and target fields
-
-RO-Crates and DataCite are machine-actionable metadata in JSON format.\
-The differences are the structure and the names of attributes.\
-To create a conversion, the mapping relation was implemented with
-source and target fields, these are defined by `"from"` and `"to"` fields.\
-`"from"` refers to RO-Crate, `"to"` refers to DataCite.
-
-#### Value transformation
-
-The values are transformed respectively to the tags of RO-Crate and DataCite.
-
-Meaning of important characters and attributes:
-- `$: dereferencing`
-- `[]: array value`
-- `@@this: target value gets source value`
-
-Every occurence of `@@this` is replaced by the source value.
+To define the mapping between RO-Crates and DataCite, it is necessary to specify which field in RO-Crates is mapped to which field in DataCite. This is achieved by specifying the `from` and `to` fields in a Mapping Rule.
 
 **Example**
 
-Given the following mapping rule:
+Given the following RO-Crates metadata file:
+
 ```json
-"languages_mapping_direct": {
-  "from": "inLanguage",
-  "to": "metadata.languages[]",
-  "value": {
-    "id": "@@this"
-  }
+{
+    "@context": "https://w3id.org/ro/crate/1.1/context", 
+    "@graph": [
+        {
+            "@type": "CreativeWork",
+            "@id": "ro-crate-metadata.json",
+            "conformsTo": {"@id": "https://w3id.org/ro/crate/1.1"},
+            "about": {"@id": "./"}
+        },  
+        {
+            "@id": "./",
+            "@type": "Dataset",
+            "name": "Name",
+            "author": {"@id": "https://orcid.org/0000-0002-8367-6908"}
+        },
+        {
+            "@id": "https://orcid.org/0000-0002-8367-6908",
+            "@type": "Person",
+            "name": "J. Xuan"
+        }
+    ]
 }
 ```
 
-The RO-Crate entry 
-```json
-...
-"inLanguage": "en"
-...
-```
+Speficifying the `title` field is achieved with `title`. In case the value of a key refers to another object, such as in the case of authors, querying is done using the `$` charater. Refering to the `name` field of an `author` is done using `$author.name`. It is important to note, that the `author` field may be an array. Therefore, it is necessary to mark this as a possible array. Refering to this value can be done by using the `[]` characters, i.e., `$author[].name`.
 
-is transferred into 
+Specifying the DataCite field is done in a similar fashion.
 
-```json
-"metadata": {
-  "languages": [
-    {
-      "id": "en"
-    }
-  ]
-}
-```
+
 
 #### Processing functions
 
@@ -201,8 +181,45 @@ def doi(value):
     return value.startswith("https://doi.org/")
 ```
 
-Visualizing the progress:\
-`onlyIf` &rarr; `processing` &rarr; `value`
 
----
-RO-Crate version: v1.1
+#### Value formatting
+
+A value can also be formatted, e.g. as needed when a value in RO-Crate needs to be transformed to another value in DataCite. Although this can also be achived using a processing function, value transformations provide an easier alternative. Every occurence of `@@this` is replaced by the source value.
+
+**Example**
+
+Given the following mapping rule:
+```json
+"languages_mapping_direct": {
+  "from": "inLanguage",
+  "to": "metadata.languages[]",
+  "value": {
+    "id": "@@this"
+  }
+}
+```
+
+The RO-Crate entry 
+```json
+...
+"inLanguage": "en"
+...
+```
+
+is transferred into 
+
+```json
+"metadata": {
+  "languages": [
+    {
+      "id": "en"
+    }
+  ]
+}
+```
+
+#### Flow
+
+This figure illustrates how the functions that are applied in a mapping rule.
+
+![Mapping Rule Flow](./pictures/mapping_rule_flow.svg)
