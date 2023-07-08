@@ -60,11 +60,9 @@ Each rule may contain the following keys:
 
 #### Defining source and target fields
 
-TODO: Explain how to define source and target fields
-
 RO Crates and DataCite are machine-actionable metadata in JSON format.\
-The difference is the structure and tha names of attributes.\
-To manage this problem, the mapping relation was implemented with
+The differences are the structure and the names of attributes.\
+To create a conversion, the mapping relation was implemented with
 source and target fields, these are defined by `"from"` and `"to"` fields.\
 `"from"` refers to RO Crate, `"to"` refers to DataCite.
 
