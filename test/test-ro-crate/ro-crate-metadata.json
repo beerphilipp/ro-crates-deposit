@@ -15,7 +15,11 @@
             "name": "Data files associated with the manuscript:Effects of facilitated family case conferencing for ...",
             "description": "Palliative care planning for nursing home residents with advanced dementia ...",
             "license": {"@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"},
-            "author": {"@id": "https://orcid.org/0009-0009-6923-0027"}
+            "author": [
+                {"@id": "https://orcid.org/0009-0009-6923-0027"},
+                {"@id": "https://orcid.org/0009-0009-6923-0028"}
+            ],
+            "publisher": {"@id": "https://ror.org/04d836q62"}
         },
         {
             "@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
@@ -29,7 +33,19 @@
             "@type": "Person",
             "givenName": "Philipp",
             "familyName": "Beer",
-            "affiliation": "TU Wien"
+            "affiliation": {"@id": "https://ror.org/04d836q62"}
+        },
+        {
+            "@id": "https://orcid.org/0009-0009-6923-0028",
+            "@type": "Person",
+            "givenName": "Milan",
+            "familyName": "Szente",
+            "affiliation": {"@id": "https://ror.org/04d836q62"}
+        },
+        {
+            "@id": "https://ror.org/04d836q62",
+            "@type": "Organization",
+            "name": "TU Wien"
         }
     ]
 }

@@ -30,6 +30,25 @@
                         "name": "TU Wien"
                     }
                 ]
+            },
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "given_name": "Milan",
+                    "family_name": "Szente",
+                    "name": "Szente",
+                    "identifiers": [
+                        {
+                            "scheme": "ORCID",
+                            "identifier": "0009-0009-6923-0028"
+                        }
+                    ]
+                },
+                "affiliations": [
+                    {
+                        "name": "TU Wien"
+                    }
+                ]
             }
         ],
         "contributors": [
@@ -42,6 +61,24 @@
                         {
                             "scheme": "ORCID",
                             "identifier": "0009-0009-6923-0027"
+                        }
+                    ]
+                },
+                "affiliations": [
+                    {
+                        "name": "TU Wien"
+                    }
+                ]
+            },
+            {
+                "person_or_org": {
+                    "type": "personal",
+                    "given_name": "Milan",
+                    "family_name": "Szente",
+                    "identifiers": [
+                        {
+                            "scheme": "ORCID",
+                            "identifier": "0009-0009-6923-0028"
                         }
                     ]
                 },
@@ -66,6 +103,7 @@
                 "link": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"
             }
         ],
+        "publisher": "TU Wien",
         "identifiers": [
             {
                 "scheme": "doi",

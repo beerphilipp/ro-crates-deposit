@@ -2,7 +2,7 @@
 
 ## Resource Type mapping
 
-- `resource_type` is a mandatory field in Datacite
+- `resource_type` is a mandatory field in DataCite
 -  RO-Crate does not have a field that describes the type of the entire directory
 -  Therefore, we assume the type to be `dataset`
 
