@@ -46,6 +46,7 @@ The project consists of the following structure:
   - `uploader.py`: Python script used to upload the files to the InvenioRDM. Not to be called by the user.
 - `deposit.py`: Starting point. Used to map and upload the RO-Crate directory.
 - `credentials.template.py`: Template file for the environment variables.
+- `/test`: contains test instances
 
 ## Mapping
 
