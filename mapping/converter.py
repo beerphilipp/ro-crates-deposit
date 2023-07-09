@@ -444,7 +444,6 @@ def format_value(format, value):
         :param value: The value to insert.
         :return: The formatted value.
     """
-    # TODO: this only works up until one level of nesting
     if isinstance(format, str):
         return format.replace("@@this", value)
     elif isinstance(format, dict):
