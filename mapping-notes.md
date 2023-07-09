@@ -19,7 +19,7 @@
 
 ## Mapping of title
 
-- the `name` field is mapped to the `title` field as-is.
+- the `name` field is mapped to the `title` field
 - in case `name` does not exist, it falls back to using the value of `@alternativeName`
 - in case neither of those exist, `title` is assigned `:unkn`
 
