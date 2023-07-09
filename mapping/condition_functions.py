@@ -20,14 +20,20 @@ def embargoed(value):
     """
         Checks if the value is a date in the future.
     """
+    import pytz
     from dateutil.parser import parse
     from datetime import datetime
+
+    utc=pytz.UTC
 
     if value == None:
         return False
 
     fuzzy_date = parse(value, fuzzy=True)
     now = datetime.now()
-    if (now < fuzzy_date):
+    if (now.timestamp() < fuzzy_date.timestamp()):
         return True
     return False
+
+def string(value):
+    return value and isinstance(value, str)

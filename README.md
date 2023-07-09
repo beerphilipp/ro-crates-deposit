@@ -236,8 +236,22 @@ This figure illustrates how the functions that are applied in a mapping rule.
 
 ## Results
 
+
+### Minimal RO-Crate
+
+The result of uploading the minimal RO-Crate as shown on [https://www.researchobject.org/ro-crate/1.1/root-data-entity.html#minimal-example-of-ro-crate](https://www.researchobject.org/ro-crate/1.1/root-data-entity.html#minimal-example-of-ro-crate) ([`/test/minimal-ro-crate`](./test/minimal-ro-crate/)) leads to the following result:
+
+![](./images/ro-crate-minimal-result.png)
+
+
+### Optimal RO-Crate
+
 The result of uploading the [`/test/test-ro-crate`](./test/test-ro-crate/) directory looks like this in TUW's InvenioRDM repository:
 
-
-
 ![](./images/result.png)
+
+### Real World RO-Crate
+
+We tested the tool on a real-world RO-Crate ([https://reliance.rohub.org/b927e3d8-5bfd-4332-b14c-ab3a07d36dc6?activetab=overview](https://reliance.rohub.org/b927e3d8-5bfd-4332-b14c-ab3a07d36dc6?activetab=overview)). The result is shown below:
+
+![](./images/real-world-example.png)

@@ -12,6 +12,15 @@
 
         "creators_mapping": {
             "mappings": {
+                "person_or_org_type_mapping_direct": {
+                    "from": "author[]",
+                    "to": "metadata.creators[].person_or_org",
+                    "value": {
+                        "type": "organizational",
+                        "name": "@@this"
+                    },
+                    "onlyIf": "?string"
+                },
                 "person_or_org_type_mapping": {
                     "from": "$author[].@type",
                     "to": "metadata.creators[].person_or_org.type",
@@ -75,6 +84,15 @@
 
         "contributors_mapping": {
             "mappings": {
+                "person_or_org_type_mapping_direct": {
+                    "from": "author[]",
+                    "to": "metadata.contributors[].person_or_org",
+                    "value": {
+                        "type": "organizational",
+                        "name": "@@this"
+                    },
+                    "onlyIf": "?string"
+                },
                 "person_or_org_type_mapping": {
                     "from": "$author[].@type",
                     "to": "metadata.contributors[].person_or_org.type",
@@ -292,6 +310,9 @@
                     "from": "$publisher.name",
                     "to": "metadata.publisher"
                 }
+            },
+            "ifNonePresent": {
+                "metadata.publisher": ":unkn"
             }
         },
    

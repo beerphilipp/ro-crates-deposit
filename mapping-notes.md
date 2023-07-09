@@ -31,7 +31,9 @@
 
 ## Mapping of publication date
 
-- the `datePublished` field is mapped to `metadata.publication_date`. The value is mapped as-is. Processing of the value can be added in `mapping/processing_functions.py#dateProcessing`
+- the `datePublished` field is mapped to `metadata.publication_date`
+- the DataCite field may only contain the date, but not the time
+- we try to guess the format and parse the date
 - If no `datepublished` value is present, the `publication_date` is assigned the value `:unav`
 
 ## Mapping of description
@@ -70,6 +72,7 @@
 ## Mapping of publisher
 
 - maps `publisher.name` to `metadata.publisher`
+- if no publisher exists, the value is `:unkn`
 
 ## Mapping of identifier
 

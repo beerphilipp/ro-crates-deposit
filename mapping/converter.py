@@ -172,7 +172,8 @@ def get_paths_recursive(rc, temp, keys, paths, path):
     # clean key
     cleaned_key = current_key
     cleaned_key = cleaned_key.replace("[]", "").replace("$", "")
-
+    if temp == None:
+        return
     if (cleaned_key not in temp.keys()):
         return
 
