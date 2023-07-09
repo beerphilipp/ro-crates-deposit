@@ -26,9 +26,6 @@ def main():
 
 
 def get_arrays_from_from_values(input_list):
-    """
-    
-    """
     output_set = set()
     for string in input_list:
         delimiter_index = string.rfind("[]")
@@ -39,6 +36,12 @@ def get_arrays_from_from_values(input_list):
     return output_list
 
 def convert(rc, metadata_only=False):
+    """
+        Convert a RO-Crate to a DataCite object
+
+        :param rc: The RO-Crate
+        :param metadata_only: Whether it is a metadata-only DataCite
+    """
     mapping_file = open("mapping/mapping.json")
     m = json.load(mapping_file)
 
@@ -61,7 +64,6 @@ def convert(rc, metadata_only=False):
         
         root_mappings = root_rules.get(mapping_class)
         
-        # TODO: implement ifNonePresent behaviour
         mappings = root_mappings.get("mappings")
 
         # retrieve all array values
@@ -153,6 +155,12 @@ def convert(rc, metadata_only=False):
 
 
 def get_paths(rc, key):
+    """
+        Get all possible paths for a given key
+
+        :param rc: The RO-Crate
+        :param key: The key to get the paths for
+    """
     print(f"\t\t|- Getting paths for {key}")
     keys = key.split(".")
     temp = rc_get_rde(rc)
@@ -452,6 +460,14 @@ def format_value(format, value):
 
 def set_dc(dictionary, key, value=None, path=[]):
     """
+        Sets the value of the given key in the given dictionary to the given value.
+        If the key does not exist, it is created.
+        If the key ends with "[]", the value is appended to the list of values for the key.
+
+        :param dictionary: The dictionary to set the value in.
+        :param key: The key to set the value for.
+        :param value: The value to set.
+        :param path: The path to the key.
     """
     keys = key.split(".")
     current_dict = dictionary
