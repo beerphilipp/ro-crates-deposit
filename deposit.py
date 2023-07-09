@@ -39,11 +39,13 @@ def main():
         
 
     # Get all files in RO-Crate directory and check if it is a RO-Crate directory
+    # Exclude RO-Crate metadata, and RO-Crate website files
     all_files = []
+
     for file in glob.glob(f"{ro_crates_dir}/**", recursive=True):
-        if (file.endswith("ro-crate-metadata.json")):
+        if "ro-crate-preview" in file or "ro-crate-metadata.json" in file:
             continue
-        if (os.path.isfile(file)):
+        if os.path.isfile(file):
             all_files.append(file)
 
     ro_crates_metadata_file = os.path.join(ro_crates_dir, "ro-crate-metadata.json")
