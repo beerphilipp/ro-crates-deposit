@@ -119,6 +119,19 @@
                 "id": "eng"
             }
         ],
+        "dates": [
+            {
+                "date": "2018",
+                "type": {
+                    "id": "other",
+                    "title": {
+                        "en": "Other"
+                    }
+                },
+                "description": "Temporal Coverage"
+            }
+        ],
+        "version": "v5.3.8",
         "publisher": "TU Wien",
         "identifiers": [
             {
@@ -129,6 +142,26 @@
         "formats": [
             "text/csv",
             "text/plain"
+        ],
+        "locations": [
+            {
+                "features": [
+                    {
+                        "place": "Catalina Park",
+                        "identifiers": [
+                            {
+                                "scheme": "geonames",
+                                "identifier": "8152662"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "funding": [
+            {
+                "name": "International Development Research Center"
+            }
         ]
     },
     "files": {

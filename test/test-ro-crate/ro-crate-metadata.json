@@ -25,7 +25,15 @@
                 "text/csv",
                 "text/plain"
             ],
-            "inLanguage": "en"
+            "inLanguage": "en",
+            "version": "v5.3.8",
+            "funder": {
+                "@id": "https://www.idrc.ca/"
+            },
+            "contentLocation": {
+                "@id": "http://sws.geonames.org/8152662/"
+            },
+            "temporalCoverage": "2018"
         },
         {
             "@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
@@ -52,6 +60,17 @@
             "@id": "https://ror.org/04d836q62",
             "@type": "Organization",
             "name": "TU Wien"
+        },
+        {
+            "@id": "https://www.idrc.ca/",
+            "@type": "Organization",
+            "description": "Canadian Frown Corporation and funder of development research",
+            "identifier": "IDRC",
+            "name": "International Development Research Center"
+        },
+        {
+            "@id": "http://sws.geonames.org/8152662/",
+            "name": "Catalina Park"
         }
     ]
 }

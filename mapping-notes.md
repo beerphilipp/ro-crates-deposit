@@ -53,53 +53,47 @@
 
 - `keywords` field is mapped to `subjects` field
 
-## Languages mapping
+## Mapping of languages
 
 - `inLanugage` is mapped to `metadata.languages`
 - we try to understand what a language is given free text and then map it to the ISO-639-3 language code (as expected by InvenioRDM)
 - if we cannot find out what language it is, we omit the field
 
-## Dates mapping
+## Mapping of dates
 
-- `temporalCoverage` is mapped to `metadata.dates.date`, and gets the value from the RO Crate
+- `temporalCoverage` is mapped as-ios to `metadata.dates`. The type of the date is "other" and the description is "Temporal Coverage".
 
-## Version mapping
+## Mapping of version
 
 - maps the `version` field to `metadata.version`
 
-## Publisher mapping
+## Mapping of publisher
 
 - maps `publisher.name` to `metadata.publisher`
 
-## Identifier mapping
+## Mapping of identifier
 
 - the `identifier` field of RO-Crate is mapped to to `identifier` array in DataCite
 - the mapping currently only processes DOIs
 - adding new schemes can easily be added in `mapping/mapping.json` 
 
-## Sizes mapping
+## Mapping of sizes
 
 - `contentSize` field is mapped to `metadata.sizes`
 
-## Formats mapping
+## Mapping of formats
 
 - `encodingFormat` field is mapped to `metadata.formats`
 
-## Locations mapping
+## Mapping of locations
 
-- can be the `$contentLocation.name` attribute, which is mapped to `metadata.locations[].features[].place`
+- we currently only support free text locations and locations in the geonames scheme
+- support for other schemes can easily be added in `mapping/mapping.json`
+- the `contentLocation` field is mapped to the `locations` field in RO-Crate.
 
-- also can be the `$contentLocation.@id`, this field is mapped to `metadata.locations[].features[].identifiers[]`
+## Mapping of funding references
 
-## Funding references mapping
-
-- in OFR format, the `$funder.@id` is mapped to `metadata.funding.funder.id`
-- in ROR, `$funder.@id` relates to `metadata.funding.funder.id`
-- as for award field, `$funder.Person.award` has a mapping to `metadata.funding.funder.award.id`
-
-## References mapping
-
-- the references are got from `exifData.@id` and mapped to `metadata.references[].identifier` array
+- only the funder's name is mapped, since the ID in DataCite needs to be of a controlled vocabulary (and we don't know this controlled vocabulary)
 
 ## Embargo mapping
 

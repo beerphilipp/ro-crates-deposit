@@ -258,17 +258,20 @@
         },
 
         "dates_mapping": {
-            "_ignore": true,
             "mappings": {
                 "dates_mapping": {
-                "from": "temporalCoverage",
-                "to": "metadata.dates.date",
+                "from": "temporalCoverage[]",
+                "to": "metadata.dates[]",
+                "value": {
+                    "date": "@@this",
                     "type": {
-                        "id": "@@this",
+                        "id": "other",
                         "title": {
-                            "en": "temporalCoverage"
+                            "en": "Other"
                         }
-                    }
+                    },
+                    "description": "Temporal Coverage"
+                }
                 }
             }
         },
@@ -364,31 +367,16 @@
 
         "funding_references_mapping": {
             "mappings": {
-              "funding_mapping_ofr": {
-                "from": "$funder.@id",
-                "to": "metadata.funding.funder.id"
-              },
               "funding_mapping_ror": {
-                "from": "$funder.@id",
-                "to": "metadata.funding.funder.id"
-              },
-              "award_mapping": {
-                "_note": "https://schema.org/award",
-                "from": "$funder.Person.award",
-                "to": "metadata.funding.funder.award.id"
+                "from": "$funder[].name",
+                "to": "metadata.funding[].name"
               }
             }
         },
 
 
         "references_mapping": {
-            "_ignore": true,
-            "mappings": {
-                "references_mappings": {
-                    "from": "$exifData.@id",
-                    "to": "metadata.references[].identifier"
-                }
-            }
+            "_ignore": true
         },
 
         "embargo_mapping": {
