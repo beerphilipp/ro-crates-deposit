@@ -1,25 +1,29 @@
 # Notes on Mapping
 
-## Resource Type mapping
+## Mapping of resource type
 
 - `resource_type` is a mandatory field in DataCite
 -  RO-Crate does not have a field that describes the type of the entire directory
 -  Therefore, we assume the type to be `dataset`
 
-## Creators mapping
+## Mapping of creators
 
 - an `author` in RO-Crate is mapped to a `creator` in DataCite, alongside with their affiliations
 - if the `@id` field of an author is an ORCiD, the ORCiD field is parsed and added in DataCite
 - consists of `person or organization` and `affiliation`
 - if no creator exists, the creator is chosen to be the value `:unkn`
 
-## Title mapping
+## Mapping of contributors
+
+- similar to creator mapping
+
+## Mapping of title
 
 - the `name` field is mapped to the `title` field as-is.
 - in case `name` does not exist, it falls back to using the value of `@alternativeName`
 - in case neither of those exist, `title` is assigned `:unkn`
 
-## Additional title mapping
+## Mapping of additional title
 
 - `@alternativeName` is mapped to `additional_titles`
 - a new array entry in `additional_titles` is added
@@ -45,20 +49,15 @@
   - if the value is a URL: only set the link value in the DataCite file
   - if the value is freetext: only set the description value in the DataCite file
 
-## Contributors mapping
+## Mapping of subjects
 
-- similar mapping like in `Creators` mapping
-
-
-## Subjects mapping
-
-- `keywords` field is mapped to `"metadata.subjects[]` field
-- it is an array and gets all the values from keywords
+- `keywords` field is mapped to `subjects` field
 
 ## Languages mapping
 
-- `inLanugage` is mapped to `metadata.languages[]` array and gets all the values from inLanguage
-- the mapping can happen with `inLanguage.name` property, in this case `metadata.languages[]` gets the values 
+- `inLanugage` is mapped to `metadata.languages`
+- we try to understand what a language is given free text and then map it to the ISO-639-3 language code (as expected by InvenioRDM)
+- if we cannot find out what language it is, we omit the field
 
 ## Dates mapping
 
@@ -74,14 +73,9 @@
 
 ## Identifier mapping
 
-- the `identifier` field of RO-Crate is mapped to `pids`
+- the `identifier` field of RO-Crate is mapped to to `identifier` array in DataCite
 - the mapping currently only processes DOIs
 - adding new schemes can easily be added in `mapping/mapping.json` 
-
-## Related identifier mapping
-
-- maps `thumbnail.@id` to `metadata.related_identifiers.identifier`
-- must be DOI format, if not, returns empty string
 
 ## Sizes mapping
 

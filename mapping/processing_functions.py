@@ -58,4 +58,20 @@ def embargoDateProcessing(value):
         return None
     fuzzy_date = parse(value, fuzzy=True)
     return fuzzy_date and fuzzy_date.strftime("%Y-%m-%d")
+
+
+def convert_to_iso_639_3(value):
+    """
+        Converts the value to a valid ISO-639-3 language code
+    """
+    import iso639
+    if (value == None):
+        return None
+    try:
+        language = iso639.Language.match(value)
+        code = language.part3
+    except iso639.language.LanguageNotFoundError:
+        return None
+        
+    return code
     

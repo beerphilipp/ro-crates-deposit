@@ -15,11 +15,17 @@
             "name": "Data files associated with the manuscript:Effects of facilitated family case conferencing for ...",
             "description": "Palliative care planning for nursing home residents with advanced dementia ...",
             "license": {"@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"},
+            "keywords": ["RO-Crate"],
             "author": [
                 {"@id": "https://orcid.org/0009-0009-6923-0027"},
-                {"@id": "https://orcid.org/0009-0009-6923-0028"}
+                {"@id": "https://orcid.org/0009-0001-3915-5910"}
             ],
-            "publisher": {"@id": "https://ror.org/04d836q62"}
+            "publisher": {"@id": "https://ror.org/04d836q62"},
+            "encodingFormat": [
+                "text/csv",
+                "text/plain"
+            ],
+            "inLanguage": "en"
         },
         {
             "@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
@@ -36,7 +42,7 @@
             "affiliation": {"@id": "https://ror.org/04d836q62"}
         },
         {
-            "@id": "https://orcid.org/0009-0009-6923-0028",
+            "@id": "https://orcid.org/0009-0001-3915-5910",
             "@type": "Person",
             "givenName": "Milan",
             "familyName": "Szente",

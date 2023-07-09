@@ -38,7 +38,7 @@
                     "from": "$author[].@id[]",
                     "to": "metadata.creators[].person_or_org.identifiers[].scheme",
                     "onlyIf": "?orcid",
-                    "value": "ORCID"
+                    "value": "orcid"
                     
                 },
                 "person_or_org_type_mapping_identifiers_identifier": {
@@ -92,7 +92,7 @@
                     "from": "$author[].@id[]",
                     "to": "metadata.contributors[].person_or_org.identifiers[].scheme",
                     "onlyIf": "?orcid",
-                    "value": "ORCID"
+                    "value": "orcid"
                     
                 },
                 "person_or_org_type_mapping_identifiers_identifier": {
@@ -107,7 +107,11 @@
                 },
 
                 "role_mapping": {
-                    "_ignore": true
+                    "from": "$author[]",
+                    "to": "metadata.contributors[].role",
+                    "value": {
+                        "id": "editor"
+                    }
                 },
 
                 "affiliation_mapping_direct": {
@@ -239,14 +243,16 @@
                 "to": "metadata.languages[]",
                 "value":{
                   "id": "@@this"
-                }
+                },
+                "processing": "$convert_to_iso_639_3"
               },
               "languages_mapping" : {
                 "from": "$inLanguage[].name",
                 "to": "metadata.languages[]",
                 "value":{
                   "id": "@@this"
-                }
+                },
+                "processing": "$convert_to_iso_639_3"
               }
             }
         },
@@ -288,21 +294,18 @@
    
         "pid_mapping": {
             "mappings": {
-              "pid_mapping": {
-                "from": "identifier",
-                "to": "pids",
-                "value": {
-                  "doi": {
-                    "identifier": "@@this",
-                    "provider": "datacite",
-                    "client": "datacite"
-                  }
-                },
-                "processing": "$doi_processing",
-                "onlyIf": "?doi"
+                "pid_mapping": {
+                    "from": "identifier[]",
+                    "to": "metadata.identifiers[]",
+                    "value": {
+                        "scheme": "doi",
+                        "identifier": "@@this"
+                    },
+                    "processing": "$doi_processing",
+                    "onlyIf": "?doi"
                 }
             }
-          },
+        },
 
         "sizes_mapping": {
             "mappings": {
@@ -317,8 +320,8 @@
         "formats_mapping": {
             "mappings": {
               "format":{
-                "from":  "encodingFormat",
-                "to": "metadata.formats"
+                "from":  "encodingFormat[]",
+                "to": "metadata.formats[]"
               }
 
             }
