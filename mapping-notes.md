@@ -72,10 +72,11 @@
 
 - maps `publisher.name` to `metadata.publisher`
 
-## Alternative identifier mapping
+## Identifier mapping
 
-- maps `identifier` to `metadata.identifiers[]` array
-- must be DOI format, if not, returns empty string
+- the `identifier` field of RO-Crate is mapped to `pids`
+- the mapping currently only processes DOIs
+- adding new schemes can easily be added in `mapping/mapping.json` 
 
 ## Related identifier mapping
 

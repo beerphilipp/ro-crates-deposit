@@ -113,5 +113,12 @@
     },
     "files": {
         "enabled": false
+    },
+    "pids": {
+        "doi": {
+            "identifier": "10.4225/59/59672c09f4a4b",
+            "provider": "datacite",
+            "client": "datacite"
+        }
     }
 }

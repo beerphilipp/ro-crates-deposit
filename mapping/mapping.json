@@ -285,16 +285,19 @@
                 }
             }
         },
-
-        "alternative_identifier_mapping": {
+   
+        "pid_mapping": {
             "mappings": {
-              "alternate_mapping": {
-                "from": "identifier[]",
-                "to": "metadata.identifiers[]",
+              "pid_mapping": {
+                "from": "identifier",
+                "to": "pids",
                 "value": {
-                  "scheme": "doi",
-                  "identifier": "@@this"
-                  },
+                  "doi": {
+                    "identifier": "@@this",
+                    "provider": "datacite",
+                    "client": "datacite"
+                  }
+                },
                 "processing": "$doi_processing",
                 "onlyIf": "?doi"
                 }
