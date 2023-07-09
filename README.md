@@ -236,6 +236,12 @@ This figure illustrates how the functions that are applied in a mapping rule.
 
 ## Results
 
+The result of uploading the [`/test/test-ro-crate`](./test/test-ro-crate/) directory looks like this in TUW's InvenioRDM repository:
+
+
+
+![](./images/result.png)
+
 TODO: Add Results
 
 ## Known problems

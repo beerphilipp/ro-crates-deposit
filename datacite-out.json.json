@@ -1,10 +1,9 @@
 {
     "access": {
-        "record": "restricted",
-        "files": "restricted",
+        "record": "public",
+        "files": "public",
         "embargo": {
-            "active": true,
-            "until": "2024-01-01"
+            "active": false
         }
     },
     "metadata": {
@@ -95,9 +94,9 @@
                 ]
             }
         ],
-        "title": "Data files associated with the manuscript:Effects of facilitated family case conferencing for ...",
-        "publication_date": "2024-01-01",
-        "description": "Palliative care planning for nursing home residents with advanced dementia ...",
+        "title": "Measuring execution time of different CUDA libraries",
+        "publication_date": "2023-02-02",
+        "description": "Measuring execution time of Boost.Compute, Thrust and ViennaCL libraries",
         "rights": [
             {
                 "title": {
