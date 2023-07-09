@@ -12,8 +12,8 @@
             "identifier": "https://doi.org/10.4225/59/59672c09f4a4b",
             "@type": "Dataset",
             "datePublished": "2024-01-01",
-            "name": "Data files associated with the manuscript:Effects of facilitated family case conferencing for ...",
-            "description": "Palliative care planning for nursing home residents with advanced dementia ...",
+            "name": "Measuring execution time of different CUDA libraries",
+            "description": "Measuring execution time of Boost.Compute, Thrust and ViennaCL libraries",
             "license": {"@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"},
             "keywords": ["RO-Crate"],
             "author": [
