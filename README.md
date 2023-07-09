@@ -25,7 +25,7 @@ Command line tool to deposit a [RO-Crate directory](https://www.researchobject.o
 - Set up the Python environment
   - Run `python3 -m pip install -r requirements.txt`
 
-- Uploa the RO-Crate directory
+- Upload the RO-Crate directory
   - Run `python3 deposit.py <ro-crate-dir>` with the RO-Crate directory as parameter. The record is saved as a draft and not published
   - Run `python3 deposit.py -p <ro-crate-dir>` with the RO-Crate directory as parameter to publish the record.
   - Run `python3 deposit.py -h` for help.
