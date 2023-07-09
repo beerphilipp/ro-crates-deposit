@@ -11,7 +11,7 @@
 - an `author` in RO-Crate is mapped to a `creator` in DataCite, alongside with their affiliations
 - if the `@id` field of an author is an ORCiD, the ORCiD field is parsed and added in DataCite
 - consists of `person or organization` and `affiliation`
-   
+- if no creator exists, the creator is chosen to be the value `:unkn`
 
 ## Title mapping
 
