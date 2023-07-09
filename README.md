@@ -241,9 +241,3 @@ The result of uploading the [`/test/test-ro-crate`](./test/test-ro-crate/) direc
 
 
 ![](./images/result.png)
-
-TODO: Add Results
-
-## Known problems
-
-- Problem 1
