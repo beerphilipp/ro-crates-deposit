@@ -1,6 +1,6 @@
 # RO-Crates Data Deposit
 
-[![DOI](https://zenodo.org/badge/651515226.svg)](https://zenodo.org/badge/latestdoi/651515226)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8127644.svg)](https://doi.org/10.5281/zenodo.8127644)
 
 Command line tool to deposit a [RO-Crate directory](https://www.researchobject.org/ro-crate/) to an [InvenioRDM](https://inveniordm.web.cern.ch/). 
 
